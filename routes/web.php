@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('meeting', 'MeetingController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');

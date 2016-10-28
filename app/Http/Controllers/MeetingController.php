@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Meeting;
 use Illuminate\Http\Request;
+
+use Illuminate\Contracts\Validation\Validator;
+
 
 class MeetingController extends Controller
 {
+
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class MeetingController extends Controller
      */
     public function index()
     {
-        return view('meeting');
+        $meetings=Meeting::all();
+        return view('meeting/index',compact('meetings'));
     }
 
     /**
@@ -23,7 +32,7 @@ class MeetingController extends Controller
      */
     public function create()
     {
-        return 'create';
+        return view('meeting/create');
     }
 
     /**
@@ -34,7 +43,26 @@ class MeetingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required',
+            'date' => 'required',
+            'subject' => 'required',
+        ]);
+
+        
+        // store
+        $meeting = new Meeting;
+        $meeting->name         = $request->name;
+        $meeting->subject      = $request->subject;
+        $meeting->date         = $request->date;
+        $meeting->user_id      = Auth::user()->id;
+        $meeting->save();
+
+        // redirect
+        //Session::flash('message', 'Successfully created meeting!');
+        return redirect('/');
+        
     }
 
     /**
@@ -45,7 +73,11 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        $meeting=Meeting::find($id);
+        echo $meeting;
+        die;
+        return view('meeting/show',compact('meeting'));
     }
 
     /**
@@ -56,7 +88,8 @@ class MeetingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $meeting=Meeting::find($id);
+        return view('meeting/edit', compact('meeting'));
     }
 
     /**

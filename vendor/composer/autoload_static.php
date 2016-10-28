@@ -16,6 +16,7 @@ class ComposerStaticInitc25670e2ce47c04d1ae293d41bc6dfa3
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -85,6 +86,7 @@ class ComposerStaticInitc25670e2ce47c04d1ae293d41bc6dfa3
         ),
         'C' => 
         array (
+            'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
@@ -221,6 +223,10 @@ class ComposerStaticInitc25670e2ce47c04d1ae293d41bc6dfa3
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'ClassPreloader\\' => 
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
@@ -278,6 +284,7 @@ class ComposerStaticInitc25670e2ce47c04d1ae293d41bc6dfa3
     );
 
     public static $classMap = array (
+        'AddForeingKeyToMeeting' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_113948_add_foreing_key_to_meeting.php',
         'CreateMeetingsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_090034_create_meetings_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',

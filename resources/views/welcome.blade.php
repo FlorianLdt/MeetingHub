@@ -55,7 +55,7 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #FFF;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -86,8 +86,9 @@
                 <p>La plateforme qui vous permet d'organiser simplement vos réunions</p>
 
                 <div class="links">
-                    <button type="button" class="btn btn-primary btn-lg"><a href="{{ url('/meeting/create') }}">Plannifier une réunion</a></button>
-
+                    <!-- <button type="button" class="btn btn-primary btn-lg"><a href="{{ url('/meeting/create') }}">Plannifier une réunion</a></button> -->
+                    <a href="{{ url('/meeting/create') }}">Plannifier une réunion</a>
+                    <a href="{{ url('/meeting') }}">Liste des réunions</a>
                 </div>
             </div>
         </div>
