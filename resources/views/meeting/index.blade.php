@@ -13,16 +13,12 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-image: url("https://images.unsplash.com/photo-1454023989775-79520f04322c?dpr=2&auto=format&crop=entropy&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb");
-                color: #fff;
-               
-                background-repeat:no-repeat;
-                background-size: cover;
+                background-color: #fff;
+                color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
-                
             }
 
             .full-height {
@@ -47,7 +43,6 @@
 
             .content {
                 text-align: center;
-                
             }
 
             .title {
@@ -55,7 +50,7 @@
             }
 
             .links > a {
-                color: #FFF;
+                color: #636b6f;
                 padding: 0 25px;
                 font-size: 12px;
                 font-weight: 600;
@@ -79,16 +74,23 @@
             @endif
 
             <div class="content">
+                <div class="links">
+                    <a href="{{ url('/') }}"> Accueil </a>
+                </div>
                 <div class="title m-b-md">
-                    MeetingHub
+                    Meeting dans la base : {{ count($meetings)}}
                 </div>
 
-                <p>La plateforme qui vous permet d'organiser simplement vos réunions</p>
-
                 <div class="links">
-                    <!-- <button type="button" class="btn btn-primary btn-lg"><a href="{{ url('/meeting/create') }}">Plannifier une réunion</a></button> -->
-                    <a href="{{ url('/meeting/create') }}">Plannifier une réunion</a>
-                    <a href="{{ url('/meeting') }}">Liste des réunions</a>
+                    @foreach ($meetings as $meeting)
+                    <a href="{{ route('meeting.show',$meeting->id) }}"> {{ $meeting->name }} - <small style="color:red">By {{ $meeting->user->name }} </small> </a> 
+                    @if($meeting->user_id == Auth::user()->id)
+                        <a href="{{ route('meeting.edit',$meeting->id) }}"> Modifier</a>
+                    @endif
+                    <p> {{ $meeting->subject }} </p>
+                    <hr>
+                    @endforeach
+
                 </div>
             </div>
         </div>
