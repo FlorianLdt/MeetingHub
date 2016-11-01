@@ -75,8 +75,7 @@ class MeetingController extends Controller
     {
         
         $meeting=Meeting::find($id);
-        echo $meeting;
-        die;
+       
         return view('meeting/show',compact('meeting'));
     }
 
