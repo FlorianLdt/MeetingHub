@@ -132,7 +132,11 @@
 						<dl class="dl-horizontal">
 							<dt>Subject : </dt>
 							<dd> {{ $meeting->subject }}</dd> 
-						</dl>                   
+						</dl>
+            <dl class="dl-horizontal">
+              <dt>Promoter : </dt>
+              <dd> {{ $meeting->user->name }}</dd> 
+            </dl>          
                 	</div>
             	</div>
             </div>
@@ -141,7 +145,7 @@
                 <hr>
             	<div class="row">
             		<div class="row col-md-8 col-md-offset-2">
-                		<table class="table table-striped">
+                		<table class="table table-striped doctable">
   								<thead> 
   									<tr> 
   										<th>#</th> 
@@ -149,6 +153,7 @@
   										<th>Last Name</th> 
   										<th>Username</th>
   										<th>Role</th>
+                      <th>Action</th>
   									</tr> 
   								</thead> 
   								<tbody> 
@@ -157,7 +162,12 @@
   										<td>Arsim</td> 
   										<td>Hysen</td> 
   										<td>arsim@gmail.com</td>
-  										<td>Promoter</td> 
+  										<td>Promoter</td>
+                      <td>
+                        <button type="button" class="btn btn-default btn-default">
+                          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                      </button>
+                    </td>
   									</tr> 
   									<tr> 
   										<th scope=row>2</th> 
@@ -165,6 +175,7 @@
   										<td>Fernane</td> 
   										<td>yassine@gmail.com</td>
   										<td>Participant</td>
+                      <td></td>
   									</tr> 
   									<tr> 
   										<th scope=row>3</th> 
@@ -172,6 +183,7 @@
   										<td>Ludot</td> 
   										<td>florian@gmail.com</td> 
   										<td>Participant</td>
+                      <td></td>
   									</tr>
   								</tbody>
 							</table>                
