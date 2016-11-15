@@ -12,7 +12,15 @@ use Illuminate\Contracts\Validation\Validator;
 class MeetingController extends Controller
 {
 
-    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -75,8 +83,6 @@ class MeetingController extends Controller
     {
         
         $meeting=Meeting::find($id);
-        echo $meeting;
-        die;
         return view('meeting/show',compact('meeting'));
     }
 
@@ -89,7 +95,11 @@ class MeetingController extends Controller
     public function edit($id)
     {
         $meeting=Meeting::find($id);
-        return view('meeting/edit', compact('meeting'));
+        
+        if($meeting->user_id == Auth::user()->id)
+            return view('meeting/edit', compact('meeting'));
+        else
+            return redirect('/meeting');
     }
 
     /**
@@ -101,7 +111,15 @@ class MeetingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $meeting = Meeting::find($id);
+        
+        $meeting->name         = $request->name;
+        $meeting->subject      = $request->subject;
+        $meeting->date         = $request->date;
+        
+        $meeting->save();
+        
+        return redirect('/meeting/' . $id);
     }
 
     /**

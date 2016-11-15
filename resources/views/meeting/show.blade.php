@@ -11,6 +11,11 @@ sujet : <b>{{ $meeting->subject }}</b>
 <a href="{{ url('/')}}"> accueil</a>
 <a href="{{ url('/meeting')}}"> liste des meeting</a>
 
+@if(Auth::user()->id == $meeting->user_id)
+<a href="{{ url('/meeting/' . $meeting->id . '/edit')}}"> editer</a>
+@endif
+
+
 <br>
 <br>
 <br>
