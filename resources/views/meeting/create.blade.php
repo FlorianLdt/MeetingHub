@@ -1,27 +1,42 @@
-<!-- echo Form::open(array('url' => 'foo/bar', 'method' => 'put')) -->
+@extends('layouts.app')
 
-{!! Form::open( ['route' => 'meeting.store'] ) !!} 
+@section('content')
+<div class="container page">
+    <div class="title m-b-md text-center">
+        Edit your meeting
+    </div>
+    <div class="row meetingsection">
 
-	name :
-	{{ Form::input('text', 'name') }}
-	date :
-	{{ Form::input('text', 'date',   date("Y-m-d H:i:s") ) }}
+        <hr>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
 
+                <!-- echo Form::open(array('url' => 'foo/bar', 'method' => 'put')) -->
 
-	subject :
-	{{ Form::input('text', 'subject') }}
+                {!! Form::open( ['route' => 'meeting.store'] ) !!} 
+                <dl class="dl-horizontal">
+                    <dt>Name : </dt>
+                    <dd>{{ Form::input('text', 'name', null,['class' => 'form-control']) }}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Date : </dt>
+                    <dd>{{ Form::input('text', 'date',   date("Y-m-d H:i:s"), ['class' => 'form-control'] ) }}</dd> 
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Subject : </dt>
+                    <dd>{{ Form::textarea('subject', null,['class' => 'form-control']) }}</dd> 
+                </dl>
+                <dl class="dl-horizontal">
+                    <dd>{!! Form::submit('Create New Meeting', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
+                </dl>   
+            </div>
 
-{!! Form::submit('Create New meeting', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
 
-{!! Form::close() !!}
-
-
-
-<hr>
-
-<a href="{{ url('/')}}"> accueil</a>
-<a href="{{ url('/meeting')}}"> liste des meeting</a>
-
+        </div>
+    </div>
+</div>
+@endsection
 
 <!-- 
 

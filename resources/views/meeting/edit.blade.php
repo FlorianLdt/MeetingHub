@@ -1,27 +1,39 @@
-<!-- echo Form::open(array('url' => 'foo/bar', 'method' => 'put')) -->
+@extends('layouts.app')
 
-{!! Form::open( ['route' => ['meeting.update', $meeting->id], 'method' => 'PUT'] ) !!} 
+@section('content')
+<div class="container page">
+	<div class="title m-b-md text-center">
+		Edit your meeting
+	</div>
+	<div class="row meetingsection">
+		<hr>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
 
-	name :
-	{{ Form::input('text', 'name', $meeting->name) }}
-	date :
-	{{ Form::input('text', 'date',  $meeting->date ) }}
+				<!-- echo Form::open(array('url' => 'foo/bar', 'method' => 'put')) -->
 
-
-	subject :
-	{{ Form::input('text', 'subject', $meeting->subject) }}
-
-{!! Form::submit('Edit meeting', ['class' => 'btn btn-primary']) !!}
-
-{!! Form::close() !!}
-
-
-
-<hr>
-
-<a href="{{ url('/')}}"> accueil</a>
-<a href="{{ url('/meeting')}}"> liste des meeting</a>
-
+				{!! Form::open( ['route' => ['meeting.update', $meeting->id], 'method' => 'PUT'] ) !!} 
+				<dl class="dl-horizontal">
+					<dt>Name : </dt>
+					<dd>{{ Form::input('text', 'name', $meeting->name, ['class' => 'form-control']) }}</dd>
+				</dl>
+				<dl class="dl-horizontal">
+					<dt>Date : </dt>
+					<dd>{{ Form::input('text', 'date',  $meeting->date, ['class' => 'form-control'] ) }}</dd> 
+				</dl>
+				<dl class="dl-horizontal">
+					<dt>Subject : </dt>
+					<dd>{{ Form::textarea('subject', $meeting->subject, ['class' => 'form-control']) }}</dd> 
+				</dl>
+				<dl class="dl-horizontal">
+					<dd>{!! Form::submit('Edit meeting', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
+				</dl>   
+			</div>
+			{!! Form::close() !!}
+		</div>
+	</div>
+</div>
+@endsection
 
 <!-- 
 
