@@ -78,6 +78,7 @@
                 </div>
             @else
             <div class="top-right links">
+                    <a href="{{ url('/profile/'. Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                     <a href="{{ url('/logout') }}">Logout</a>
             </div>
                                                     
