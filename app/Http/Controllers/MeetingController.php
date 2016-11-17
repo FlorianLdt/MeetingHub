@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Meeting;
 use Illuminate\Http\Request;
-
+use App\Email;
+use App\Document;
 use Illuminate\Contracts\Validation\Validator;
 
 
@@ -83,7 +84,9 @@ class MeetingController extends Controller
     {
         
         $meeting=Meeting::find($id);
-        return view('meeting/show',compact('meeting'));
+        $participant=Email::where('meeting_id', $id)->get();
+        $document=Document::where('meeting_id', $id)->get();
+        return view('meeting/show', ['meeting'=>$meeting, 'participants'=>$participant, 'documents'=>$document]);
     }
 
     /**

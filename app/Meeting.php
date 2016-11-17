@@ -13,4 +13,14 @@ class Meeting extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function emails()
+    {
+        return $this->hasMany('App\Email');
+    }
+
+    public function documents()
+    {
+        return $this->hasMany('App\Document');
+    }
 }

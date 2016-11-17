@@ -1,22 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content page">
-    <div class="title">
+	<div class="content">
+		<div class="title">
         My Profile
     </div>
-    <div class="sub-title m-b-md">
-        Account Information
+	</div>
+    
+    <div class="container page">
+    <div class="row meetingsection">
+       <h1>Account Information</h1> 
+    
+    <hr>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+    <dl class="dl-horizontal">
+          <dt>Name : </dt>
+          <dd>{{ ($user->name) }}</dd>
+        </dl>
+   <dl class="dl-horizontal">
+          <dt>Email : </dt>
+          <dd>{{ ($user->email) }}</dd>
+        </dl>
     </div>
-    <p>
-    	{{ ($user->name) }}
-    </p>
-    <p>
-    	{ ($user->email) }}
-    </p>
-     <div class="sub-title m-b-md">
-        My Meetings
     </div>
+    	
+    	
+   
+    <h1>My Meetings</h1>
+    
+    <hr>
     <div class="container">
         <div class="card-columns">
     @foreach ($meetings as $meeting)
@@ -33,7 +46,7 @@
     </div>
 </div>
     </div>
-
+</div>
     
     
 @endsection
