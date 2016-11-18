@@ -9,7 +9,9 @@
 		<hr>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-
+@if (Session::has('message'))
+    <div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
 				<!-- echo Form::open(array('url' => 'foo/bar', 'method' => 'put')) -->
 
 				{!! Form::open( ['route' => ['meeting.update', $meeting->id], 'method' => 'PUT'] ) !!} 
@@ -30,6 +32,14 @@
 				</dl>   
 			</div>
 			{!! Form::close() !!}
+
+			<hr>
+	{{ Form::open(['route' => 'email.store', 'method' => 'post', 'id' => 'form-add-participant']) }}
+    {{ Form::label( 'email_participant', 'E-mail :' ) }}
+    {{ Form::input( 'email_participant', '', ['id' => 'email_participant', 'required' => true]) }}
+    {{ Form::hidden('meeting_id', $meeting_id) }}
+    {{ Form::submit( 'ajouter',['id' => 'btn-add-setting']) }}
+    {{ Form::close() }}
 		</div>
 	</div>
 </div>

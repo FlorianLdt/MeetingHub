@@ -25,3 +25,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+Route::post('addParticipant/{id}', 'EmailController@store');      //id = id du meeting
+
+Route::get('meeting/{id}/participant', 'EmailController@show', [
+    'name' => 'email.show'
+]);
