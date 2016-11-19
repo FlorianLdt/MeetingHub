@@ -28,6 +28,7 @@
   <div class="row meetingsection">
     <h1>Contributors ({{count($participants)}})</h1>
     <hr>
+    @if(count($participants) != 0)
     <div class="row">
       <div class="row col-md-8 col-md-offset-2">
         <table class="table table-striped doctable">
@@ -46,14 +47,27 @@
             <tr> 
               <th scope=row>{{$contributerRow}}</th> 
               <td>{{ $participant->email_participant }}</td> 
+              @if(empty($participant->name))
               <td>User not registered</td> 
+              @else
+              <td>{{$participant->name}}</td> 
+              @endif
               <td>
-                <a href="/"><button type="button" class="btn btn-default btn-default">
+                @if(!empty($participant->name))
+                <a href="/profile/{{$participant->id}}"><button type="button" class="btn btn-default btn-default">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 </button></a>
-                 <a href="/"><button type="button" class="btn btn-default btn-default">
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                </button></a>
+                @endif
+                @if(Auth::user()->id == $meeting->user_id)
+
+                 {{ Form::open(['route' => ['participant.destroy',  $participant->meeting_id,$participant->email_participant], 'class' => 'pull-right']) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('effacer', array('class' => 'btn btn-warning')) }}
+                {{ Form::close() }}
+
+                @else
+                <p>Aucune action disponible</p>
+                @endif
               </td>
             </tr>
             <?php $contributerRow++ ?>
@@ -62,10 +76,14 @@
         </table>            
       </div>
     </div>
+    @else
+    <p>There is no contributor in this meeting</p>
+    @endif
   </div>
   <div class="row meetingsection">
     <h1>Documents ({{count($documents)}})</h1>
     <hr>
+    @if(count($documents) != 0)
     <div class="row">
       <div class="row col-md-8 col-md-offset-2">
         <table class="table table-striped doctable">
@@ -97,19 +115,11 @@
         </table>                
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <!-- Standar Form -->
-        <h4>Select files from your computer</h4>
-        <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
-          <div class="form-inline">
-            <div class="form-group">
-              <input type="file" name="files[]" id="js-upload-files" multiple>
-            </div>
-            <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Upload files</button>
-          </div>
-        </form>
-</div>
+    @else
+    <p>There is no file in this meeting</p>
+    @endif
+    <hr>
+
 </div>
 </div>
 </div>

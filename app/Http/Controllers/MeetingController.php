@@ -6,6 +6,8 @@ use Auth;
 use App\Meeting;
 use Illuminate\Http\Request;
 use App\Email;
+use App\User;
+use DB;
 use App\Document;
 use Illuminate\Contracts\Validation\Validator;
 
@@ -74,6 +76,10 @@ class MeetingController extends Controller
         
     }
 
+    public function storer($id){
+        return $id;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -84,7 +90,12 @@ class MeetingController extends Controller
     {
         
         $meeting=Meeting::find($id);
-        $participant=Email::where('meeting_id', $id)->get();
+
+        $participant = DB::table('emails')
+            ->leftJoin('users', 'emails.email_participant', '=', 'users.email')
+            ->where('emails.meeting_id', '=', $id)
+            ->get();
+
         $document=Document::where('meeting_id', $id)->get();
         return view('meeting/show', ['meeting'=>$meeting, 'participants'=>$participant, 'documents'=>$document]);
     }

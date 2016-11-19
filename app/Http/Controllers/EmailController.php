@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Email;
+use Session;
+use Redirect;
 
 class EmailController extends Controller
 {
@@ -34,20 +37,24 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $input = $request->all();
 
-try{
+        //check si id du meeting a bien été créer par l'user qui insert.... A FAIRE
 
-  Email::create($input);
-  $msg = 'participant ajoutÈ';
+        $emailExist = Email::where('email_participant', '=', $input['email_participant'])->first();
+        
+        if ($emailExist === null) {
+           Email::create($input);
+           $msg = 'participant ajouté';
+        }else{
+            $msg = 'participant non ajouté, il existe peut-être déja'; 
+        }
 
-}catch(Exception $e){
-    $msg = 'participant non ajouté'; 
-}
+        Session::flash('message', $msg);
 
-Session::flash('message', $msg);
-
-return Redirect::to('meeting/'.$input->meeting_id.'/edit');
+        return Redirect::to('meeting/'.$input['meeting_id'].'/edit');
     }
 
     /**
@@ -60,8 +67,8 @@ return Redirect::to('meeting/'.$input->meeting_id.'/edit');
     {
         //on rÈcupËre la liste des participants au format JSON
 
-$participants = Email::where('meeting_id', $id)->get();
-return Response::json( $participants);
+        $participants = Email::where('meeting_id', $id)->get();
+        return Response::json( $participants);
     }
 
     /**
@@ -93,8 +100,11 @@ return Response::json( $participants);
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($meeting_id, $email_participant)
     {
-        //
+        $email = Email::where('email_participant', $email_participant)
+                    ->where('meeting_id', $meeting_id)
+                    ->delete();
+        return back();
     }
 }

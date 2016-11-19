@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Email extends Model
 {
+
+	protected $fillable = ['email_participant', 'meeting_id'];
+
     public function email()
     {
-        return $this->hasOne('App\User');
+        return $this->belongsTo('App\User');
     }
+
 }

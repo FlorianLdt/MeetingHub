@@ -3,15 +3,17 @@
 @section('content')
 <div class="container page">
 	<div class="title m-b-md text-center">
-		Edit your meeting
+		Edit your meeting<br>
 	</div>
 	<div class="row meetingsection">
+		@if (Session::has('message'))
+		<div class="alert alert-info">{{ Session::get('message') }}</div><br>
+		@endif
+			<small><a href="{{ route('meeting.show',$meeting->id) }}">Voir : {{ $meeting->name }}</a></small>
+
 		<hr>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
-@if (Session::has('message'))
-    <div class="alert alert-info">{{ Session::get('message') }}</div>
-@endif
 				<!-- echo Form::open(array('url' => 'foo/bar', 'method' => 'put')) -->
 
 				{!! Form::open( ['route' => ['meeting.update', $meeting->id], 'method' => 'PUT'] ) !!} 
@@ -33,16 +35,33 @@
 			</div>
 			{!! Form::close() !!}
 
-			<hr>
-	{{ Form::open(['route' => 'email.store', 'method' => 'post', 'id' => 'form-add-participant']) }}
-    {{ Form::label( 'email_participant', 'E-mail :' ) }}
-    {{ Form::input( 'email_participant', '', ['id' => 'email_participant', 'required' => true]) }}
-    {{ Form::hidden('meeting_id', $meeting_id) }}
-    {{ Form::submit( 'ajouter',['id' => 'btn-add-setting']) }}
-    {{ Form::close() }}
 		</div>
+
+
+
+		<hr>
+
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+
+				{{ Form::open(['route' => ['email.store', $meeting->id],  'method' => 'POST']) }}
+				<dl class="dl-horizontal">
+					<dt>Email : </dt>
+					<dd>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</dd>
+				</dl>
+				{{ Form::hidden('meeting_id', $meeting->id) }}
+				<dl class="dl-horizontal">
+					<dd>{!! Form::submit('add contributor', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
+				</dl>   
+			</div>
+			{!! Form::close() !!}
+
+		</div>
+		<hr>
+
 	</div>
 </div>
+
 @endsection
 
 <!-- 
