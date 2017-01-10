@@ -5,14 +5,25 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Meeting;
 use Illuminate\Http\Request;
-
+use App\Email;
+use App\User;
+use DB;
+use App\Document;
 use Illuminate\Contracts\Validation\Validator;
 
 
 class MeetingController extends Controller
 {
 
-    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -65,6 +76,10 @@ class MeetingController extends Controller
         
     }
 
+    public function storer($id){
+        return $id;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -75,9 +90,14 @@ class MeetingController extends Controller
     {
         
         $meeting=Meeting::find($id);
-        echo $meeting;
-        die;
-        return view('meeting/show',compact('meeting'));
+
+        $participant = DB::table('emails')
+            ->leftJoin('users', 'emails.email_participant', '=', 'users.email')
+            ->where('emails.meeting_id', '=', $id)
+            ->get();
+
+        $document=Document::where('meeting_id', $id)->get();
+        return view('meeting/show', ['meeting'=>$meeting, 'participants'=>$participant, 'documents'=>$document]);
     }
 
     /**
@@ -89,7 +109,11 @@ class MeetingController extends Controller
     public function edit($id)
     {
         $meeting=Meeting::find($id);
-        return view('meeting/edit', compact('meeting'));
+        $participants = Email::where('meeting_id', $id)->get();
+        if($meeting->user_id == Auth::user()->id)
+            return view('meeting/edit', compact('meeting','participant'));
+        else
+            return redirect('/meeting');
     }
 
     /**
@@ -101,7 +125,15 @@ class MeetingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $meeting = Meeting::find($id);
+        
+        $meeting->name         = $request->name;
+        $meeting->subject      = $request->subject;
+        $meeting->date         = $request->date;
+        
+        $meeting->save();
+        
+        return redirect('/meeting/' . $id);
     }
 
     /**
