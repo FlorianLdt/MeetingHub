@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 
-				{{ Form::open(['route' => ['email.store', $meeting->id],  'method' => 'POST']) }}
+				{{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
 				<dl class="dl-horizontal">
 					<dt>Email : </dt>
 					<dd>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</dd>
