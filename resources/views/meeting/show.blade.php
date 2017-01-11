@@ -99,9 +99,9 @@
            @foreach($documents as $document)
             <tr> 
               <th scope=row>{{$documentRow}}</th> 
-              <td>{{ $document->document_path }}</td> 
+              <td>{{ $document->original_filename }}</td>
               <td>
-                <a href="{{ $document->document_path }}"><button type="button" class="btn btn-default btn-default">
+                <a href="{{ $document->original_filename }}"><button type="button" class="btn btn-default btn-default">
                   <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
                 </button></a>
                 <a href="/"><button type="button" class="btn btn-default btn-default">

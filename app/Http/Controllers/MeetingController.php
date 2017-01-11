@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Fileentry;
 use Auth;
 use App\Meeting;
 use Illuminate\Http\Request;
@@ -96,7 +97,7 @@ class MeetingController extends Controller
             ->where('emails.meeting_id', '=', $id)
             ->get();
 
-        $document=Document::where('meeting_id', $id)->get();
+        $document=Fileentry::where('meeting_id', $id)->get();
         return view('meeting/show', ['meeting'=>$meeting, 'participants'=>$participant, 'documents'=>$document]);
     }
 
