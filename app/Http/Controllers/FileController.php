@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Fileentry;
+use App\Meeting;
+use Illuminate\Support\Facades\Auth;
 use Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -81,7 +83,15 @@ class FileController extends Controller
 
         $file = Fileentry::findOrFail($id);
 
-        $path = storage_path('app'.$file->document_path);
+        $meeting = new Meeting();
+        
+        //check si l'user est dans le meeting
+        if($meeting->checkUser($file->meeting_id, Auth::user()->id)){
+            $path = storage_path('app'.$file->document_path);
+        }else{
+            $path = storage_path('app/MeetingDocuments/err.txt');
+        }
+
 
         return response()->download($path, $file->original_name, $header);
 
