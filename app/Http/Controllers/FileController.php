@@ -75,7 +75,16 @@ class FileController extends Controller
      */
     public function show($id)
     {
-        //
+        $header = array(
+            'Content-Type' => 'application/octet-stream',
+        );
+
+        $file = Fileentry::findOrFail($id);
+
+        $path = storage_path('app'.$file->document_path);
+
+        return response()->download($path, $file->original_name, $header);
+
     }
 
     /**

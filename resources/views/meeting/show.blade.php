@@ -101,7 +101,7 @@
               <th scope=row>{{$documentRow}}</th> 
               <td>{{ $document->original_filename }}</td>
               <td>
-                <a href="{{ $document->original_filename }}"><button type="button" class="btn btn-default btn-default">
+                <a href="{{ route('fichier.show', $document->id)}}"><button type="button" class="btn btn-default btn-default">
                   <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
                 </button></a>
                 <a href="/"><button type="button" class="btn btn-default btn-default">
