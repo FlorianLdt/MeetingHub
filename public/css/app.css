@@ -149,3 +149,7 @@ text {
 .createMeeting {
 	margin-bottom: 20px;
 }
+
+.justify {
+	text-align: justify;
+}
