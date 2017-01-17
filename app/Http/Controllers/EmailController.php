@@ -52,7 +52,7 @@ class EmailController extends Controller
 
         Session::flash('message', $msg);
 
-        return Redirect::to('meeting/'.$input['meeting_id'].'/edit');
+        return Redirect::to('meeting/'.$input['meeting_id']);
     }
 
     /**

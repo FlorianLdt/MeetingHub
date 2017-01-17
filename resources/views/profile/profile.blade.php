@@ -39,6 +39,9 @@
             <p class="card-text">{{ $meeting->subject }}</p>
             @if($meeting->user_id == Auth::user()->id)
             <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary btn-card">Modifier</a>
+                    {{ Form::open(['route' => ['meeting.destroy', $meeting->id], 'class' => '', 'method' => 'DELETE']) }}
+                {{ Form::submit('Delete', array('class' => 'btn btn-danger btn-card')) }}
+            {{ Form::close() }}
             @endif
         </div>
         @endforeach    
