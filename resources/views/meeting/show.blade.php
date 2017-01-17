@@ -75,7 +75,9 @@
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                 </button></a>
                 @endif
-                @if(Auth::user()->id == $meeting->user_id)
+                </td>
+                <td>
+                  @if(Auth::user()->id == $meeting->user_id)
 
                  {{ Form::open(['route' => ['participant.destroy',  $participant->meeting_id,$participant->email_participant], 'class' => '']) }}
                     {{ Form::hidden('_method', 'DELETE') }}
@@ -85,7 +87,9 @@
                 @else
                 <p>Aucune action disponible</p>
                 @endif
-              </td>
+                </td>
+                
+              
             </tr>
             <?php $contributerRow++ ?>
             @endforeach
@@ -127,9 +131,10 @@
                 <tr>
                   <th></th> 
                   <td>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
+                  <td></td>
                   <td>
                     {{ Form::hidden('meeting_id', $meeting->id) }}
-                    {!! Form::submit('Add contributor', ['class' => 'btn btn-primary pull-right']) !!}
+                    {!! Form::submit('Add contributor', ['class' => 'btn btn-primary']) !!}
                   </td>
                 </tr>
                 {!! Form::close() !!}  
@@ -167,6 +172,7 @@
                 </button></a>
                 
               </td>
+
                  @if(Auth::user()->id == $meeting->user_id)
                 <td>
                 {{-- form --}}
@@ -183,6 +189,7 @@
               {{ Form::open(['route' => ['fichier.store', $meeting->id], "files"=>true]) }}
               <tr> 
               <th></th> 
+
               <td>{{ Form::file('addFile', null) }}</td>
                 <td>
                 {{ Form::hidden('meeting_id', $meeting->id) }}
@@ -209,7 +216,7 @@
               <td>{{ Form::file('addFile', null) }}</td>
                 <td>
                 {{ Form::hidden('meeting_id', $meeting->id) }}
-                    {!! Form::submit('add file', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Add file', ['class' => 'btn btn-primary']) !!}
                 </td>
             </tr>
 			{!! Form::close() !!}  
