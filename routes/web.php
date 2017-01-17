@@ -36,9 +36,7 @@ Route::resource('participant', 'EmailController', ['except' => [
 
 
 //fichier
-Route::resource('fichier', 'FileController', ['except' => [
-    'destroy'
-]]);
+Route::resource('fichier', 'FileController');
 
 
 Route::delete('participant/{meeting_id}/delete/{email_participant}',[

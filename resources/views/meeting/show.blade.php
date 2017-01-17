@@ -114,9 +114,10 @@
                 <a href="{{ route('fichier.show', $document->id)}}"><button type="button" class="btn btn-default btn-default">
                   <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
                 </button></a>
-                <a href="/"><button type="button" class="btn btn-default btn-default">
-                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                </button></a>
+                {{-- form --}}
+                {{ Form::open(['route' => ['fichier.destroy', $document->id], 'method' => 'DELETE']) }}
+                    {{ Form::submit('Supprimer le groupe', array('class' => 'btn btn-warning')) }}
+                {{ Form::close() }}
               </td>
             </tr> 
             <?php $documentRow++ ?>
