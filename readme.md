@@ -4,6 +4,8 @@
 
 MeetingHub est un site internet utilisé pour créer des réunions et y inviter des participants.
 
+Le projet a été implementé à l'aide du Framework PHP Laravel (https://laravel.com/) et utilise en 
+
 ## Déploiement du projet
 
 ### Téléchargement du projet 
@@ -25,46 +27,45 @@ Les différentes ressources que notre API met en place sont :
 
 ### Adresses et verbes HTTP
 
-**GET**
+**Ressource meeting**
 
-* `http://localhost:8000/fichier` --> Retourne la liste complète des fichiers
-* `http://localhost:8000/fichier/create` --> Retourne
-* `http://localhost:8000/fichier/{fichier}` --> Retourne
-* `http://localhost:8000/fichier/{fichier}/edit` --> Retourne
-* `http://localhost:8000/meeting` --> Retourne la liste complète des réunions
-* `http://localhost:8000/meeting/create` --> Retourne
-* `http://localhost:8000/meeting/{id}/participant` --> Retourne
-* `http://localhost:8000/meeting/{meeting}` --> Retourne
-* `http://localhost:8000/meeting/{meeting}/edit` --> Retourne
-* `http://localhost:8000/participant` --> Retourne
-* `http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `http://localhost:8000/profile` --> Retourne
-* `http://localhost:8000/profile/create` --> Retourne
-* `http://localhost:8000/profile/{profile}` --> Retourne
-* `http://localhost:8000/profile/{profile}/edit` --> Retourne
-* `http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/meeting` --> Retourne la liste complète des réunions
+* `GET http://localhost:8000/meeting/create` --> Retourne
+* `GET http://localhost:8000/meeting/{id}/participant` --> Retourne
+* `GET http://localhost:8000/meeting/{meeting}` --> Retourne
+* `GET http://localhost:8000/meeting/{meeting}/edit` --> Retourne
+* `POST http://localhost:8000/meeting` --> Retourne
+* `PUT http://localhost:8000/meeting/{meeting}` --> Retourne
+* `DELETE http://localhost:8000/meeting/{meeting}` --> Retourne
 
-**POST**
+**Ressource profile**
 
-* `http://localhost:8000/fichier` --> Retourne
-* `http://localhost:8000/meeting` --> Retourne
-* `http://localhost:8000/participant` --> Retourne
-* `http://localhost:8000/profile` --> Retourne
-* `http://localhost:8000/participant` --> Retourne
-* `http://localhost:8000/profile` --> Retourne
+* `GET http://localhost:8000/profile` --> Retourne
+* `GET http://localhost:8000/profile/create` --> Retourne
+* `GET http://localhost:8000/profile/{profile}` --> Retourne
+* `GET http://localhost:8000/profile/{profile}/edit` --> Retourne
+* `POST http://localhost:8000/profile` --> Retourne
+* `PUT http://localhost:8000/profile/{profile}` --> Retourne
+* `DELETE http://localhost:8000/profile/{profile}` --> Retourne
 
-**PUT**
+**Ressource participant**
 
-* `http://localhost:8000/fichier/{fichier}` --> Retourne
-* `http://localhost:8000/meeting/{meeting}` --> Retourne
-* `http://localhost:8000/participant/{participant}` --> Retourne
-* `http://localhost:8000/profile/{profile}` --> Retourne
+* `GET http://localhost:8000/participant` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `POST http://localhost:8000/participant` --> Retourne
+* `PUT http://localhost:8000/participant/{participant}` --> Retourne
+* `DELETE http://localhost:8000/participant/{meeting_id}/delete/{email_participant}` --> Retourne
 
-**DELETE**
+**Ressource fichier**
 
-* `http://localhost:8000/fichier/{fichier}` --> Retourne
-* `http://localhost:8000/meeting/{meeting}` --> Retourne
-* `http://localhost:8000/participant/{meeting_id}/delete/{email_participant}` --> Retourne
-* `http://localhost:8000/profile/{profile}` --> Retourne
+* `GET http://localhost:8000/fichier` --> Retourne la liste complète des fichiers
+* `GET http://localhost:8000/fichier/create` --> Retourne
+* `GET http://localhost:8000/fichier/{fichier}` --> Retourne
+* `GET http://localhost:8000/fichier/{fichier}/edit` --> Retourne
+* `POST http://localhost:8000/fichier` --> Retourne
+* `PUT http://localhost:8000/fichier/{fichier}` --> Retourne
+* `DELETE http://localhost:8000/fichier/{fichier}` --> Retourne
+
