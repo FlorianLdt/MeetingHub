@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Meeting;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,44 +12,62 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+    Route::pattern('id', '[0-9]+');
 
-Route::get('/', function () {
-    return view('welcome');
+
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
+	Route::resource('meeting', 'MeetingController', ['except' =>['destroy']], ['parameters' => [
+        'meeting' => 'id'
+    ]]);
+
+	Route::resource('profile', 'ProfileController', ['except' =>['create', 'update', 'update', 'destroy']], ['parameters' => [
+        'profile' => 'id'
+    ]]);
+
+	Auth::routes();
+
+	Route::get('home', 'HomeController@index', ['parameters' => [
+        'home' => 'id'
+    ]]);
+
+	Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+
+//	Route::get('meeting/{id}/participant', 'EmailController@show');
+
+
+	Route::resource('participant', 'EmailController', ['except' =>['create', 'update', 'index', 'edit', 'destroy']], ['parameters' => [
+        'profile' => 'id'
+    ]]);
+
+
+
+	Route::resource('fichier', 'FileController', ['except' => [
+        'destroy', 'create', 'index', 'edit', 'update'
+	]], ['parameters' => [
+        'fichier' => 'id'
+    ]]);
+
+
+
+	Route::delete('participant/{meeting_id}/delete/{email_participant}',[
+	    'as' => 'participant.destroy',
+	    'uses' => 'EmailController@destroy'
+	]);
+
+
+
+
+
+
+
+Route::group(['suffix' => 'json'], function () {
+    Route::get('reunion', function ()    {
+    	$reunion = Meeting::all();
+        return response()->json($reunion);
+	});
 });
 
-Route::resource('meeting', 'MeetingController');
-
-Route::resource('profile', 'ProfileController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-//Route::post('addParticipant/{id}', 'EmailController@store')->name('email.store');      //id = id du meeting
-
-Route::get('meeting/{id}/participant', 'EmailController@show');
-
-Route::resource('participant', 'EmailController', ['except' => [
-    'show', 'destroy'
-]]);
-
-
-
-//fichier
-Route::resource('fichier', 'FileController', ['except' => [
-    'destroy'
-]]);
-
-
-
-Route::delete('participant/{meeting_id}/delete/{email_participant}',[
-    'as' => 'participant.destroy',
-    'uses' => 'EmailController@destroy'
-]);
-/*Route::post('addParticipant/{id}', [
-    'as' => 'email.store',
-    'uses' => 'EmailController@store'
-]);
-*/
