@@ -66,7 +66,7 @@ class FileController extends Controller
 
         }
 
-        //dump($formInput);
+        return redirect('/meeting/'. $meeting_id);
     }
 
     /**
@@ -84,7 +84,7 @@ class FileController extends Controller
         $file = Fileentry::findOrFail($id);
 
         $meeting = new Meeting();
-        
+
         //check si l'user est dans le meeting
         if($meeting->checkUser($file->meeting_id, Auth::user()->id)){
             $path = storage_path('app'.$file->document_path);
@@ -126,8 +126,11 @@ class FileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+        public function destroy($id)
     {
-        //
+        $doc = Fileentry::destroy($id);
+
+        return redirect()->back();
+    
     }
 }

@@ -36,9 +36,7 @@ Route::resource('participant', 'EmailController', ['except' => [
 
 
 //fichier
-Route::resource('fichier', 'FileController', ['except' => [
-    'destroy'
-]]);
+Route::resource('fichier', 'FileController');
 
 
 
