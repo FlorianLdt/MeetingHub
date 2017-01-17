@@ -18,13 +18,11 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $input = $request->all();
-
-        //check si id du meeting a bien été créer par l'user qui insert.... A FAIRE
-
-        $emailExist = Email::where('email_participant', '=', $input['email_participant'])->first();
+        
+        $emailExist = Email::where('email_participant',  $input['email_participant'])
+                    ->where('meeting_id', $input['meeting_id'])
+                    ->first();
         
         if ($emailExist === null) {
            Email::create($input);
@@ -35,7 +33,7 @@ class EmailController extends Controller
 
         Session::flash('message', $msg);
 
-        return Redirect::to('meeting/'.$input['meeting_id'].'/edit');
+        return Redirect::to('meeting/'.$input['meeting_id']);
     }
 
     /**

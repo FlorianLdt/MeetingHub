@@ -9,6 +9,7 @@
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
+                font-size: 17px;
                 height: 100vh;
                 margin: 0;
             }
@@ -54,7 +55,7 @@
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 17px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -63,6 +64,20 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .grayLink {
+            	color: #636b6f;
             }
 
             /* layout.css Style */
@@ -110,8 +125,31 @@
 
 .btn-card {
 	width: 80%;
+	margin:	5px 0 5px 0;
 }
 
 .page {
 	margin-bottom: 80px;
+}
+
+text {
+    color: black;
+}
+
+.meetingGestButton {
+	width: 100%;
+	margin : 5px 0 5px 0;
+}
+
+.gestionButtons {
+	
+	text-align: center;
+}
+
+.createMeeting {
+	margin-bottom: 20px;
+}
+
+.justify {
+	text-align: justify;
 }

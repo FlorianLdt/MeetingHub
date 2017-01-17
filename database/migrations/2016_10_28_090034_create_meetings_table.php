@@ -17,7 +17,7 @@ class CreateMeetingsTable extends Migration
             $table->increments('id');
             $table->String('name');
             $table->dateTime('date');
-            $table->String('subject');
+            $table->text('subject');
             $table->timestamps();
         });
     }

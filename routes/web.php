@@ -43,6 +43,7 @@ use App\Meeting;
         'profile' => 'id'
     ]]);
 
+<<<<<<< HEAD
 
 
 	Route::resource('fichier', 'FileController', ['except' => [
@@ -70,4 +71,8 @@ Route::group(['suffix' => 'json'], function () {
         return response()->json($reunion);
 	});
 });
+=======
+//fichier
+Route::resource('fichier', 'FileController');
+>>>>>>> origin/master
 

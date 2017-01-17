@@ -73,7 +73,8 @@ class MeetingController extends Controller
 
         // redirect
         //Session::flash('message', 'Successfully created meeting!');
-        return redirect('/');
+        //return redirect('/meeting/');
+        return view('meeting/edit', compact('meeting','participant'));
         
     }
 
@@ -142,6 +143,8 @@ class MeetingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $meeting = Meeting::where('id', $id)
+                    ->delete();
+        return redirect('/meeting/');
     }
 }

@@ -46,7 +46,11 @@ class FileController extends Controller
 
         }
 
+<<<<<<< HEAD
         return response()->back();
+=======
+        return redirect('/meeting/'. $meeting_id);
+>>>>>>> origin/master
     }
 
     /**
@@ -77,4 +81,43 @@ class FileController extends Controller
 
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+        public function destroy($id)
+    {
+        $doc = Fileentry::destroy($id);
+
+        return redirect()->back();
+    
+    }
+>>>>>>> origin/master
 }

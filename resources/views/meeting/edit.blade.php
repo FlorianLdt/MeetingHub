@@ -36,11 +36,7 @@
 			{!! Form::close() !!}
 
 		</div>
-
-
-
-		<hr>
-
+		<hr>    
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 
