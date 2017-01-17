@@ -3,16 +3,16 @@
 @section('content')
 <div class="container page">
   <div class="title m-b-md text-center">
-    {{ $meeting->name }}    
-       
-    @if($meeting->user_id == Auth::user()->id)
-        <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary btn-card">Modifier</a>
-      
-       {{ Form::open(['route' => ['meeting.destroy',  $meeting->meeting_id], 'class' => 'pull-right']) }}
-                    {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Supprimer le groupe', array('class' => 'btn btn-warning')) }}
-                {{ Form::close() }}
-      
+    {{ $meeting->name }}           
+
+    </div>
+    <div>        
+        <a href="{{ url('/meeting') }}" class="btn btn-primary">Retour à la liste des réunions</a>
+        @if($meeting->user_id == Auth::user()->id)
+        <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary" >Modifier la réunion</a>
+        {{ Form::open(['route' => ['meeting.destroy', $meeting->id], 'class' => 'pull-right', 'method' => 'DELETE']) }}
+            {{ Form::submit('Supprimer groupe', array('class' => 'btn btn-warning')) }}
+        {{ Form::close() }}
     @endif 
     </div>
   <div class="row meetingsection">
@@ -72,7 +72,7 @@
 
                  {{ Form::open(['route' => ['participant.destroy',  $participant->meeting_id,$participant->email_participant], 'class' => 'pull-right']) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('effacer', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Supprimer contributeur', array('class' => 'btn btn-warning')) }}
                 {{ Form::close() }}
 
                 @else
@@ -114,11 +114,16 @@
                 <a href="{{ route('fichier.show', $document->id)}}"><button type="button" class="btn btn-default btn-default">
                   <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
                 </button></a>
+                
+              </td>
+                 @if(Auth::user()->id == $meeting->user_id)
+                <td>
                 {{-- form --}}
                 {{ Form::open(['route' => ['fichier.destroy', $document->id], 'method' => 'DELETE']) }}
-                    {{ Form::submit('Supprimer le groupe', array('class' => 'btn btn-warning')) }}
+                    {{ Form::submit('Supprimer document', array('class' => 'btn btn-warning')) }}
                 {{ Form::close() }}
-              </td>
+                </td>
+                @endif
             </tr> 
             <?php $documentRow++ ?>
             @endforeach
