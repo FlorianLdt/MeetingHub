@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 
-				{{ Form::open(['route' => ['email.store', $meeting->id],  'method' => 'POST']) }}
+				{{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
 				<dl class="dl-horizontal">
 					<dt>Email : </dt>
 					<dd>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</dd>
@@ -52,6 +52,25 @@
 				{{ Form::hidden('meeting_id', $meeting->id) }}
 				<dl class="dl-horizontal">
 					<dd>{!! Form::submit('add contributor', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
+				</dl>   
+			</div>
+			{!! Form::close() !!}
+
+		</div>
+
+		<hr>
+
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+
+				{{ Form::open(['route' => ['fichier.store', $meeting->id], "files"=>true]) }}
+				<dl class="dl-horizontal">
+					<dt>{!! Form::label('Fichier :') !!}</dt>
+					<dd>{{ Form::file('addFile', null) }}</dd>
+				</dl>
+				{{ Form::hidden('meeting_id', $meeting->id) }}
+				<dl class="dl-horizontal">
+					<dd>{!! Form::submit('add file', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
 				</dl>   
 			</div>
 			{!! Form::close() !!}

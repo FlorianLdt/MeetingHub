@@ -285,8 +285,9 @@ class ComposerStaticInitc25670e2ce47c04d1ae293d41bc6dfa3
 
     public static $classMap = array (
         'AddForeingKeyToMeeting' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_113948_add_foreing_key_to_meeting.php',
-        'CreateDocumentsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_17_204635_create_documents_table.php',
         'CreateEmailsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_17_133319_create_emails_table.php',
+        'CreateFileEntryTable' => __DIR__ . '/../..' . '/database/migrations/2017_01_11_103140_create_fileentries_table.php',
+        'CreateFileentriesTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_17_204635_create_documents_table.php',
         'CreateMeetingsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_28_090034_create_meetings_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',

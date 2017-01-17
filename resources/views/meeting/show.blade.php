@@ -3,8 +3,18 @@
 @section('content')
 <div class="container page">
   <div class="title m-b-md text-center">
-    {{ $meeting->name }}
-  </div>
+    {{ $meeting->name }}    
+       
+    @if($meeting->user_id == Auth::user()->id)
+        <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary btn-card">Modifier</a>
+      
+       {{ Form::open(['route' => ['meeting.destroy',  $meeting->meeting_id], 'class' => 'pull-right']) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('Supprimer le groupe', array('class' => 'btn btn-warning')) }}
+                {{ Form::close() }}
+      
+    @endif 
+    </div>
   <div class="row meetingsection">
     <h1>Overview</h1>
     <hr>
@@ -99,9 +109,9 @@
            @foreach($documents as $document)
             <tr> 
               <th scope=row>{{$documentRow}}</th> 
-              <td>{{ $document->document_path }}</td> 
+              <td>{{ $document->original_filename }}</td>
               <td>
-                <a href="{{ $document->document_path }}"><button type="button" class="btn btn-default btn-default">
+                <a href="{{ route('fichier.show', $document->id)}}"><button type="button" class="btn btn-default btn-default">
                   <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
                 </button></a>
                 <a href="/"><button type="button" class="btn btn-default btn-default">

@@ -17,6 +17,10 @@
         <p class="card-text">{{ $meeting->subject }}</p>
 @if($meeting->user_id == Auth::user()->id)
         <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary btn-card">Modifier</a>
+               {{ Form::open(['route' => ['meeting.destroy',  $meeting->meeting_id], 'class' => 'pull-right']) }}
+                    {{ Form::hidden('_method', 'DELETE') }}
+                    {{ Form::submit('Supprimer le groupe', array('class' => 'btn btn-warning')) }}
+                {{ Form::close() }}
         @endif
     </div>
     @endforeach    
