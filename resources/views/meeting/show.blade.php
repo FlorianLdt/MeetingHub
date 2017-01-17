@@ -133,12 +133,12 @@
                   </td>
                 </tr>
                 {!! Form::close() !!}  
-                @endif
           </tbody>
         </table>            
       </div>
     </div>
       
+    @endif
     @endif
   </div>
   <div class="row meetingsection">
