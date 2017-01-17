@@ -2,18 +2,12 @@
 
 @section('content')
 <div class="container page">
+<div class="links grayLink">
+  <a href="{{ url('/meeting') }}" class="grayLink">Retour à la liste des réunions</a>
+</div>
   <div class="title m-b-md text-center">
     {{ $meeting->name }}           
 
-    </div>
-    <div>        
-        <a href="{{ url('/meeting') }}" class="btn btn-primary">Retour à la liste des réunions</a>
-        @if($meeting->user_id == Auth::user()->id)
-        <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary" >Modifier la réunion</a>
-        {{ Form::open(['route' => ['meeting.destroy', $meeting->id], 'class' => 'pull-right', 'method' => 'DELETE']) }}
-            {{ Form::submit('Supprimer groupe', array('class' => 'btn btn-warning')) }}
-        {{ Form::close() }}
-    @endif 
     </div>
   <div class="row meetingsection">
     <h1>Overview</h1>
@@ -34,7 +28,20 @@
         </dl>          
       </div>
     </div>
-  </div>
+    @if($meeting->user_id == Auth::user()->id)
+    <div class="row gestionButtons col-md-6 col-md-offset-3">
+      <div class="row">          
+        <a href="{{ route('meeting.edit',$meeting->id) }}" class="btn btn-primary meetingGestButton" >Modify the meeting</a>
+      </div>
+    <div class="row">
+      {{ Form::open(['route' => ['meeting.destroy', $meeting->id], 'class' => '', 'method' => 'DELETE']) }}
+            {{ Form::submit('Delete the meeting', array('class' => 'btn btn-danger meetingGestButton')) }}
+        {{ Form::close() }}
+    </div> 
+    </div>
+     
+    @endif 
+    </div>
   <div class="row meetingsection">
     <h1>Contributors ({{count($participants)}})</h1>
     <hr>
@@ -70,9 +77,9 @@
                 @endif
                 @if(Auth::user()->id == $meeting->user_id)
 
-                 {{ Form::open(['route' => ['participant.destroy',  $participant->meeting_id,$participant->email_participant], 'class' => 'pull-right']) }}
+                 {{ Form::open(['route' => ['participant.destroy',  $participant->meeting_id,$participant->email_participant], 'class' => '']) }}
                     {{ Form::hidden('_method', 'DELETE') }}
-                    {{ Form::submit('Supprimer contributeur', array('class' => 'btn btn-warning')) }}
+                    {{ Form::button('<span class="glyphicon glyphicon-trash"></span>', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
                 {{ Form::close() }}
 
                 @else
@@ -120,7 +127,7 @@
                 <td>
                 {{-- form --}}
                 {{ Form::open(['route' => ['fichier.destroy', $document->id], 'method' => 'DELETE']) }}
-                    {{ Form::submit('Supprimer document', array('class' => 'btn btn-warning')) }}
+                    {{ Form::button('<span class="glyphicon glyphicon-trash"></span>', array('class' => 'btn btn-danger', 'type' => 'submit')) }}
                 {{ Form::close() }}
                 </td>
                 @endif
@@ -140,30 +147,3 @@
 </div>
 </div>
 @endsection
-
-<!-- Comment :  <table class="table table-striped doctable">
-          <thead> 
-            <tr> 
-              <th>#</th> 
-              <th>First Name</th> 
-              <th>Last Name</th> 
-              <th>Username</th>
-              <th>Role</th>
-              <th>Action</th>
-            </tr> 
-          </thead> 
-          <tbody> 
-            <tr> 
-              <th scope=row>1</th> 
-              <td>Arsim</td> 
-              <td>Hysen</td> 
-              <td>arsim@gmail.com</td>
-              <td>Promoter</td>
-              <td>
-                <button type="button" class="btn btn-default btn-default">
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>  -->
