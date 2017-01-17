@@ -22,7 +22,7 @@
       <div class="col-md-8 col-md-offset-2">
         <dl class="dl-horizontal">
           <dt>Date : </dt>
-          <dd>{{ date('F d, Y', strtotime($meeting->date)) }}</dd>
+          <dd>{{ date('F d, Y g:i A', strtotime($meeting->date)) }}</dd>
         </dl>
         <dl class="dl-horizontal">
           <dt>Subject : </dt>
@@ -82,12 +82,56 @@
             </tr>
             <?php $contributerRow++ ?>
             @endforeach
+              
+            @if(Auth::user()->id == $meeting->user_id)              
+            {{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
+            <tr>
+              <th scope=row>{{$contributerRow}}</th> 
+              <td>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
+              <td>
+                {{ Form::hidden('meeting_id', $meeting->id) }}
+                {!! Form::submit('Add contributor', ['class' => 'btn btn-primary pull-right']) !!}
+              </td>
+            </tr>
+			{!! Form::close() !!}  
+            @endif
+              
           </tbody>
         </table>            
       </div>
     </div>
     @else
     <p>There is no contributor in this meeting</p>
+        
+        @if(Auth::user()->id == $meeting->user_id)        
+       <div class="row">
+            <div class="row col-md-8 col-md-offset-2">
+                <table class="table table-striped doctable">
+                    <thead> 
+            <tr> 
+              <th>#</th> 
+              <th>Email</th> 
+              <th>Name</th> 
+              <th>Action</th>
+            </tr> 
+          </thead> 
+                    <tbody> 
+                {{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
+                <tr>
+                  <th></th> 
+                  <td>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
+                  <td>
+                    {{ Form::hidden('meeting_id', $meeting->id) }}
+                    {!! Form::submit('Add contributor', ['class' => 'btn btn-primary pull-right']) !!}
+                  </td>
+                </tr>
+                {!! Form::close() !!}  
+                @endif
+          </tbody>
+        </table>            
+      </div>
+    </div>
+      
     @endif
   </div>
   <div class="row meetingsection">
@@ -127,12 +171,47 @@
             </tr> 
             <?php $documentRow++ ?>
             @endforeach
+              
+            @if(Auth::user()->id == $meeting->user_id)
+              {{ Form::open(['route' => ['fichier.store', $meeting->id], "files"=>true]) }}
+              <tr> 
+              <th></th> 
+              <td>{{ Form::file('addFile', null) }}</td>
+                <td>
+                {{ Form::hidden('meeting_id', $meeting->id) }}
+                    {!! Form::submit('add file', ['class' => 'btn btn-primary']) !!}
+                </td>
+            </tr>
+			{!! Form::close() !!}  
+            @endif 
           </tbody>
         </table>                
       </div>
     </div>
     @else
     <p>There is no file in this meeting</p>
+      
+    @if(Auth::user()->id == $meeting->user_id)      
+    <div class="row">
+        <div class="row col-md-8 col-md-offset-2">
+        <table class="table table-striped doctable">
+          <tbody> 
+              {{ Form::open(['route' => ['fichier.store', $meeting->id], "files"=>true]) }}
+              <tr> 
+              <th></th> 
+              <td>{{ Form::file('addFile', null) }}</td>
+                <td>
+                {{ Form::hidden('meeting_id', $meeting->id) }}
+                    {!! Form::submit('add file', ['class' => 'btn btn-primary']) !!}
+                </td>
+            </tr>
+			{!! Form::close() !!}  
+          </tbody>
+        </table>                
+      </div>
+    </div>
+    @endif  
+      
     @endif
     <hr>
 

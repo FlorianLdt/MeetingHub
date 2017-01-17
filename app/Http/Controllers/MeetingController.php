@@ -73,7 +73,8 @@ class MeetingController extends Controller
 
         // redirect
         //Session::flash('message', 'Successfully created meeting!');
-        return redirect('/meeting/');
+        //return redirect('/meeting/');
+        return view('meeting/edit', compact('meeting','participant'));
         
     }
 
