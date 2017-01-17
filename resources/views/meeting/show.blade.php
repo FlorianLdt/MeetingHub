@@ -20,7 +20,7 @@
         </dl>
         <dl class="dl-horizontal">
           <dt>Subject : </dt>
-          <dd> {{ $meeting->subject }}</dd> 
+          <dd class="justify"> {{ $meeting->subject }}</dd> 
         </dl>
         <dl class="dl-horizontal">
           <dt>Promoter : </dt>
