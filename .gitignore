@@ -1,2 +1,6 @@
 
 .env
+
+app/Document.php
+
+.idea/workspace.xml
