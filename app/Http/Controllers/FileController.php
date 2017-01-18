@@ -46,7 +46,7 @@ class FileController extends Controller
 
         }
 
-        return response()->back();
+        return redirect()->back();
     }
 
     /**
