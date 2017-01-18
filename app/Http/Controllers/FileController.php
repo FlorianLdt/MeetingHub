@@ -45,7 +45,8 @@ class FileController extends Controller
             $entry->save();
 
         }
-        return redirect('/meeting/'. $meeting_id);
+
+        return response()->back();
     }
 
     /**
@@ -75,7 +76,6 @@ class FileController extends Controller
         return response()->download($path, $file->original_name, $header);
 
     }
-
     /**
      * Show the form for editing the specified resource.
      *
