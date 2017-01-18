@@ -1,7 +1,11 @@
 <?php
 
-
 use App\Meeting;
+use App\Email;
+use App\User;
+use App\Fileentry;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,69 +17,89 @@ use App\Meeting;
 |
 */
     Route::pattern('id', '[0-9]+');
-
-
 	Route::get('/', function () {
 	    return view('welcome');
 	});
-
-	Route::resource('meeting', 'MeetingController', ['except' =>['destroy']], ['parameters' => [
+	Route::resource('meeting', 'MeetingController', ['parameters' => [
         'meeting' => 'id'
     ]]);
-
 	Route::resource('profile', 'ProfileController', ['except' =>['create', 'update', 'update', 'destroy']], ['parameters' => [
         'profile' => 'id'
     ]]);
-
 	Auth::routes();
-
 	Route::get('home', 'HomeController@index', ['parameters' => [
         'home' => 'id'
     ]]);
-
 	Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-
 //	Route::get('meeting/{id}/participant', 'EmailController@show');
-
-
 	Route::resource('participant', 'EmailController', ['except' =>['create', 'update', 'index', 'edit', 'destroy']], ['parameters' => [
         'profile' => 'id'
     ]]);
 
-<<<<<<< HEAD
-
-
 	Route::resource('fichier', 'FileController', ['except' => [
-        'destroy', 'create', 'index', 'edit', 'update'
+        'create', 'index', 'edit', 'update'
 	]], ['parameters' => [
         'fichier' => 'id'
     ]]);
-
-
-<<<<<<< HEAD
-=======
-
 	Route::delete('participant/{meeting_id}/delete/{email_participant}',[
 	    'as' => 'participant.destroy',
 	    'uses' => 'EmailController@destroy'
 	]);
 
+Route::group(['prefix' => 'json'], function () {    
+    Route::get('meeting/{id}/fichiers', function ($id){
+        $fichiers =  Fileentry::where('meeting_id', $id)->get();
 
+        return response()->json($fichiers);
+        
+    })->middleware('auth');
+    
+    Route::get('meeting/{id}/participants', function ($id){
+        $users =  Email::where('meeting_id', $id)->get();
 
+        return response()->json($users);
+        
+    })->middleware('auth');
+    
+    Route::get('meeting/{id}', function ($id){
+        $reunion = Meeting::whereHas('emails', function($query) {
+            $query -> where('email_participant', Auth::user()->email);
+        })
+            ->Where('id', $id)
+            ->orWhere('user_id', Auth::user()->id)
+            ->Where('id', $id)
+            ->first();
+        
+        $reunion->{"participants"} = Email::where('meeting_id', '=', $reunion->id)->get();
+        $reunion->{"fichiers"} = Fileentry::where('meeting_id', '=', $reunion->id)->get();
+        
+        if($reunion)
+            return response()->json($reunion);    
+        else
+            return response()->json("[{'Access':'Denied'}]");    
+        
+    })->middleware('auth');
+    
+    Route::get('meeting', function (){
+        $reunions =  Meeting::whereHas('emails', function($query) {
+            $query -> where('email_participant', Auth::user()->email);
+        })
+            ->orWhere('user_id', Auth::user()->id)
+            ->get();
+        
+        foreach ($reunions as $reunion) {
+                $reunion->{"participants"} = Email::where('meeting_id', '=', $reunion->id)->get();
+                $reunion->{"fichiers"} = Fileentry::where('meeting_id', '=', $reunion->id)->get();
+        }
 
-
-
-
-Route::group(['suffix' => 'json'], function () {
-    Route::get('reunion', function ()    {
-    	$reunion = Meeting::all();
-        return response()->json($reunion);
-	});
+        return response()->json($reunions);
+        
+    })->middleware('auth');
+    
+    Route::get('profile', function (){
+        $profile = User::where('id', Auth::user()->id)->first();
+        
+        return response()->json($profile);        
+        
+    })->middleware('auth');
 });
-=======
->>>>>>> 116d891ceabc86ea92b9d6e86a2294da4211dd2c
-//fichier
-Route::resource('fichier', 'FileController');
->>>>>>> origin/master
-

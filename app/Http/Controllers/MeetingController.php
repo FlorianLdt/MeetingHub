@@ -32,8 +32,13 @@ class MeetingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $meetings=Meeting::all();
+    {        
+        $meetings = Meeting::whereHas('emails', function($query) {
+            $query -> where('email_participant', Auth::user()->email);
+        })
+            ->orWhere('user_id', Auth::user()->id)
+            ->get();
+        
         return view('meeting/index',compact('meetings'));
     }
 

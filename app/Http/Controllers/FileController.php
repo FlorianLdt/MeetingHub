@@ -45,12 +45,7 @@ class FileController extends Controller
             $entry->save();
 
         }
-
-<<<<<<< HEAD
-        return response()->back();
-=======
         return redirect('/meeting/'. $meeting_id);
->>>>>>> origin/master
     }
 
     /**
@@ -81,8 +76,6 @@ class FileController extends Controller
 
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Show the form for editing the specified resource.
      *
@@ -119,5 +112,4 @@ class FileController extends Controller
         return redirect()->back();
     
     }
->>>>>>> origin/master
 }

@@ -33,7 +33,7 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {        
         $user = User::findOrFail($id);
         $meetings = Meeting::where('user_id', $id)->get();
         return view('/profile/profile', compact('meetings'))->withUser($user);
