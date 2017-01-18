@@ -82,6 +82,12 @@ class MeetingController extends Controller
         return $id;
     }
 
+    public function lister() {        
+        $meetings=Meeting::all();
+        
+        return response()->json($meeting);
+    }
+    
     /**
      * Display the specified resource.
      *

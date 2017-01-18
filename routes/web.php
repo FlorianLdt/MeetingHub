@@ -33,8 +33,6 @@ Route::resource('participant', 'EmailController', ['except' => [
     'show', 'destroy'
 ]]);
 
-
-
 //fichier
 Route::resource('fichier', 'FileController');
 
