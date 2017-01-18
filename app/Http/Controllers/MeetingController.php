@@ -78,9 +78,6 @@ class MeetingController extends Controller
         
     }
 
-    public function storer($id){
-        return $id;
-    }
 
     public function lister() {        
         $meetings=Meeting::all();
@@ -97,7 +94,7 @@ class MeetingController extends Controller
     public function show($id)
     {
         
-        $meeting=Meeting::find($id);
+        $meeting=Meeting::findOrFail($id);
 
         $participant = DB::table('emails')
             ->leftJoin('users', 'emails.email_participant', '=', 'users.email')
@@ -116,7 +113,7 @@ class MeetingController extends Controller
      */
     public function edit($id)
     {
-        $meeting=Meeting::find($id);
+        $meeting=Meeting::findOrFail($id);
         $participants = Email::where('meeting_id', $id)->get();
         if($meeting->user_id == Auth::user()->id)
             return view('meeting/edit', compact('meeting','participant'));

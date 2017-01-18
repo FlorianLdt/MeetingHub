@@ -1,27 +1,71 @@
-# Laravel PHP Framework
+# Projet MeetingHub
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Description
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+MeetingHub est un site internet utilisé pour créer des réunions et y inviter des participants.
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Le projet a été implementé à l'aide du Framework PHP Laravel (https://laravel.com/) et utilise en 
 
-## Official Documentation
+## Déploiement du projet
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+### Téléchargement du projet 
 
-## Contributing
+Le projet est télachargeable à l'adresse suivante : https://github.com/FlorianLdt/MeetingHub.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+### Installation du Framework Laravel
 
-## Security Vulnerabilities
+## Présentation de l'API REST du projet
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+### Les ressources
 
-## License
+Les différentes ressources que notre API met en place sont :
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+* `meeting` correspondant à une réunion organisé 
+* `profile` correspondant à un profil utilisateur
+* `participant`correspondant à un participant à une réunion
+* `fichier` correspondant à un document joint à une réunion
+
+### Adresses et verbes HTTP
+
+**Ressource meeting**
+
+* `GET http://localhost:8000/meeting` --> Retourne la liste complète des réunions
+* `GET http://localhost:8000/meeting/create` --> Retourne
+* `GET http://localhost:8000/meeting/{id}/participant` --> Retourne
+* `GET http://localhost:8000/meeting/{meeting}` --> Retourne
+* `GET http://localhost:8000/meeting/{meeting}/edit` --> Retourne
+* `POST http://localhost:8000/meeting` --> Retourne
+* `PUT http://localhost:8000/meeting/{meeting}` --> Retourne
+* `DELETE http://localhost:8000/meeting/{meeting}` --> Retourne
+
+**Ressource profile**
+
+* `GET http://localhost:8000/profile` --> Retourne
+* `GET http://localhost:8000/profile/create` --> Retourne
+* `GET http://localhost:8000/profile/{profile}` --> Retourne
+* `GET http://localhost:8000/profile/{profile}/edit` --> Retourne
+* `POST http://localhost:8000/profile` --> Retourne
+* `PUT http://localhost:8000/profile/{profile}` --> Retourne
+* `DELETE http://localhost:8000/profile/{profile}` --> Retourne
+
+**Ressource participant**
+
+* `GET http://localhost:8000/participant` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
+* `POST http://localhost:8000/participant` --> Retourne
+* `PUT http://localhost:8000/participant/{participant}` --> Retourne
+* `DELETE http://localhost:8000/participant/{meeting_id}/delete/{email_participant}` --> Retourne
+
+**Ressource fichier**
+
+* `GET http://localhost:8000/fichier` --> Retourne la liste complète des fichiers
+* `GET http://localhost:8000/fichier/create` --> Retourne
+* `GET http://localhost:8000/fichier/{fichier}` --> Retourne
+* `GET http://localhost:8000/fichier/{fichier}/edit` --> Retourne
+* `POST http://localhost:8000/fichier` --> Retourne
+* `PUT http://localhost:8000/fichier/{fichier}` --> Retourne
+* `DELETE http://localhost:8000/fichier/{fichier}` --> Retourne
+

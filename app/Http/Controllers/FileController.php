@@ -14,26 +14,6 @@ use Illuminate\Http\Response;
 class FileController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -66,7 +46,11 @@ class FileController extends Controller
 
         }
 
+<<<<<<< HEAD
+        return response()->back();
+=======
         return redirect('/meeting/'. $meeting_id);
+>>>>>>> origin/master
     }
 
     /**
@@ -97,6 +81,8 @@ class FileController extends Controller
 
     }
 
+<<<<<<< HEAD
+=======
     /**
      * Show the form for editing the specified resource.
      *
@@ -133,4 +119,5 @@ class FileController extends Controller
         return redirect()->back();
     
     }
+>>>>>>> origin/master
 }
