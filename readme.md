@@ -29,43 +29,44 @@ Les différentes ressources que notre API met en place sont :
 
 **Ressource meeting**
 
-* `GET http://arsene.me/meeting` --> Retourne la liste complète des réunions
-* `GET http://arsene.me/meeting/create` --> Retourne
-* `GET http://arsene.me/meeting/{id}/participant` --> Retourne
-* `GET http://arsene.me/meeting/{meeting}` --> Retourne
-* `GET http://arsene.me/meeting/{meeting}/edit` --> Retourne
-* `GET http://arsene.me/json/meeting` --> Retourne
-* `GET http://arsene.me/json/meeting/{id}` --> Retourne
-* `POST http://arsene.me/meeting` --> Retourne
-* `PUT http://arsene.me/meeting/{meeting}` --> Retourne
-* `DELETE http://arsene.me/meeting/{meeting}` --> Retourne
+* `GET /meeting` --> Retourne la liste complète des réunions
+* `GET /meeting/create` --> Retourne
+* `GET /meeting/{id}/participant` --> Retourne
+* `GET /meeting/{meeting}` --> Retourne
+* `GET /meeting/{meeting}/edit` --> Retourne
+* `GET /json/meeting` --> Retourne
+* `GET /json/meeting/{id}` --> Retourne
+* `POST /meeting` --> Retourne
+* `PUT /meeting/{meeting}` --> Retourne
+* `DELETE /meeting/{meeting}` --> Retourne
 
 **Ressource profile**
 
-* `GET http://arsene.me/profile` --> Retourne
-* `GET http://arsene.me/profile/create` --> Retourne
-* `GET http://arsene.me/profile/{profile}` --> Retourne
-* `GET http://arsene.me/profile/{profile}/edit` --> Retourne
-* `POST http://arsene.me/profile` --> Retourne
-* `PUT http://arsene.me/profile/{profile}` --> Retourne
-* `DELETE http://localhost:8000/profile/{profile}` --> Retourne
+* `GET /profile` --> Retourne
+* `GET /profile/create` --> Retourne
+* `GET /profile/{profile}` --> Retourne
+* `GET /profile/{profile}/edit` --> Retourne
+* `GET /json/profile` --> Retourne
+* `POST /profile` --> Retourne
+* `PUT /profile/{profile}` --> Retourne
+* `DELETE /profile/{profile}` --> Retourne
 
 **Ressource participant**
 
-* `GET http://localhost:8000/participant` --> Retourne
-* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `GET http://localhost:8000/json/meeting/{id}/participants` --> Retourne
-* `POST http://localhost:8000/participant` --> Retourne
-* `PUT http://localhost:8000/participant/{participant}` --> Retourne
-* `DELETE http://localhost:8000/participant/{meeting_id}/delete/{email_participant}` --> Retourne
+* `GET /participant` --> Retourne
+* `GET /participant/{participant}/edit` --> Retourne
+* `GET /json/meeting/{id}/participants` --> Retourne
+* `POST /participant` --> Retourne
+* `PUT /participant/{participant}` --> Retourne
+* `DELETE /participant/{meeting_id}/delete/{email_participant}` --> Retourne
 
 **Ressource fichier**
 
-* `GET http://localhost:8000/fichier` --> Retourne la liste complète des fichiers
-* `GET http://localhost:8000/fichier/create` --> Retourne
-* `GET http://localhost:8000/fichier/{fichier}` --> Retourne
-* `GET http://localhost:8000/fichier/{fichier}/edit` --> Retourne
-* `GET http://localhost:8000/json/meeting/{id}/fichiers` --> Retourne
-* `POST http://localhost:8000/fichier` --> Retourne
+* `GET /fichier` --> Retourne la liste complète des fichiers
+* `GET /fichier/create` --> Retourne
+* `GET /fichier/{fichier}` --> Retourne
+* `GET /fichier/{fichier}/edit` --> Retourne
+* `GET /json/meeting/{id}/fichiers` --> Retourne
+* `POST /fichier` --> Retourne
 * `PUT http://localhost:8000/fichier/{fichier}` --> Retourne
 * `DELETE http://localhost:8000/fichier/{fichier}` --> Retourne
