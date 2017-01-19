@@ -3,7 +3,7 @@
 @section('content')
 <div class="container page">
 <div class="links grayLink">
-  <a href="{{ url('/meeting') }}" class="grayLink">Retour à la liste des réunions</a>
+  <a href="{{ url('/meeting') }}" class="grayLink">Go back to the meeting list</a>
 </div>
   <div class="title m-b-md text-center">
     {{ $meeting->name }}           
@@ -54,7 +54,7 @@
               <th>#</th> 
               <th>Email</th> 
               <th>Name</th> 
-              <th>Action</th>
+              <th>Actions</th>
             </tr> 
           </thead> 
           <tbody> 
@@ -123,7 +123,7 @@
               <th>#</th> 
               <th>Email</th> 
               <th>Name</th> 
-              <th>Action</th>
+              <th>Actions</th>
             </tr> 
           </thead> 
                     <tbody> 
@@ -193,7 +193,7 @@
               <td>{{ Form::file('addFile', null) }}</td>
                 <td>
                 {{ Form::hidden('meeting_id', $meeting->id) }}
-                    {!! Form::submit('add file', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Add file', ['class' => 'btn btn-primary']) !!}
                 </td>
             </tr>
 			{!! Form::close() !!}  

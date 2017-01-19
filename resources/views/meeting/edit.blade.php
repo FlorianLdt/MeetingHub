@@ -9,7 +9,7 @@
 		@if (Session::has('message'))
 		<div class="alert alert-info">{{ Session::get('message') }}</div><br>
 		@endif
-			<small><a href="{{ route('meeting.show',$meeting->id) }}">Voir : {{ $meeting->name }}</a></small>
+			<small><a href="{{ route('meeting.show',$meeting->id) }}">Overview : {{ $meeting->name }}</a></small>
 
 		<hr>
 		<div class="row">
@@ -47,7 +47,7 @@
 				</dl>
 				{{ Form::hidden('meeting_id', $meeting->id) }}
 				<dl class="dl-horizontal">
-					<dd>{!! Form::submit('add contributor', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
+					<dd>{!! Form::submit('Add contributor', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
 				</dl>   
 			</div>
 			{!! Form::close() !!}
@@ -61,12 +61,12 @@
 
 				{{ Form::open(['route' => ['fichier.store', $meeting->id], "files"=>true]) }}
 				<dl class="dl-horizontal">
-					<dt>{!! Form::label('Fichier :') !!}</dt>
+					<dt>{!! Form::label('File :') !!}</dt>
 					<dd>{{ Form::file('addFile', null) }}</dd>
 				</dl>
 				{{ Form::hidden('meeting_id', $meeting->id) }}
 				<dl class="dl-horizontal">
-					<dd>{!! Form::submit('add file', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
+					<dd>{!! Form::submit('Add file', ['class' => 'btn btn-primary btn-lg btn-full-width']) !!}</dd>
 				</dl>   
 			</div>
 			{!! Form::close() !!}

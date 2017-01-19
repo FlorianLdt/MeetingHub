@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>MeetingHub</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -89,12 +89,12 @@
                     MeetingHub
                 </div>
 
-                <p>La plateforme qui vous permet d'organiser simplement vos réunions</p>
+                <p>The best platform to manage your meetings</p>
 
                 <div class="links">
                     <!-- <button type="button" class="btn btn-primary btn-lg"><a href="{{ url('/meeting/create') }}">Plannifier une réunion</a></button> -->
-                    <a href="{{ url('/meeting/create') }}">Plannifier une réunion</a>
-                    <a href="{{ url('/meeting') }}">Liste des réunions</a>
+                    <a href="{{ url('/meeting/create') }}">Plan a meeting</a>
+                    <a href="{{ url('/meeting') }}">Meeting list</a>
                 </div>
             </div>
         </div>
