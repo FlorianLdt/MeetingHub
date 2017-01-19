@@ -29,26 +29,20 @@ class Meeting extends Model
 
     public function checkUser($idM, $idU){
 
-	    $user = $this->user()->getQuery()->find($idU);
-
-
-        $isCreator = $this->newQuery()->find($idM)->where('user_id', $idU)->get();
-
-
-        if(count($isCreator)){
+        $user = DB::table('users')->find($idU);
+        $createur = DB::table('meetings')
+            ->where('user_id', $user->id)
+            ->where('id', $idM)
+            ->get();
+        if(count($createur)){
             return true;
         }
-
         if($user !=null){
-            //chech si il participe à la reunion
-            $isParticipant = $this->emails()->getQuery()->find()->where('email', $user->email)->where('meeting_id', $idM)->get();
-            if(count($isParticipant)){
+            $participant = DB::table('emails')->where('email_participant', $user->email)->where('meeting_id', $idM)->get();
+            if(count($participant)){
                 return true;
             }
         }
-
         return false;
-
-
     }
 }
