@@ -77,11 +77,7 @@ Route::group(['prefix' => 'json'], function () {
             App::abort(403);
         } 
         $reunion->{'fichiers'} = Fileentry::where('meeting_id', '=', $reunion->id)->get();
-<<<<<<< HEAD
-        $reunion->{"fichiers"} = Fileentry::where('meeting_id', '=', $reunion->id)->get();
-=======
         $reunion->{"participants"} = Email::where('meeting_id', '=', $reunion->id)->get();
->>>>>>> 9122dbeef22f254f2d4b7c9cb81e7ef5af722858
         return response()->json($reunion);    
         
     })->middleware('auth');

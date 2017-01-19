@@ -98,7 +98,7 @@
             {{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
             <tr>
               <th scope=row>{{$contributerRow}}</th> 
-              <td>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
+              <td>{{ Form::input('email', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
               <td>
                 {{ Form::hidden('meeting_id', $meeting->id) }}
                 {!! Form::submit('Add contributor', ['class' => 'btn btn-primary pull-right']) !!}
@@ -130,7 +130,7 @@
                 {{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
                 <tr>
                   <th></th> 
-                  <td>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
+                  <td>{{ Form::input('email', 'email_participant',  '', ['class' => 'form-control'] ) }}</td> 
                   <td></td>
                   <td>
                     {{ Form::hidden('meeting_id', $meeting->id) }}

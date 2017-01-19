@@ -43,7 +43,7 @@
 				{{ Form::open(['route' => ['participant.store', $meeting->id],  'method' => 'POST']) }}
 				<dl class="dl-horizontal">
 					<dt>Email : </dt>
-					<dd>{{ Form::input('text', 'email_participant',  '', ['class' => 'form-control'] ) }}</dd>
+					<dd>{{ Form::input('email', 'email_participant',  '', ['class' => 'form-control'] ) }}</dd>
 				</dl>
 				{{ Form::hidden('meeting_id', $meeting->id) }}
 				<dl class="dl-horizontal">
