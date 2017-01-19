@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 |
 */
     Route::pattern('id', '[0-9]+');
+
 	Route::get('/', function () {
 	    return view('welcome');
 	});
@@ -48,37 +49,40 @@ use Illuminate\Http\Request;
 
 Route::group(['prefix' => 'json'], function () {    
     Route::get('meeting/{id}/fichiers', function ($id){
-        $fichiers =  Fileentry::where('meeting_id', $id)->get();
+        $meeting = new Meeting();
+        $reunion = Meeting::findOrFail($id);
+        if(!$meeting->checkUser($id, Auth::user()->id)){
+            App::abort(403);
+        } 
+        return response()->json(Fileentry::where('meeting_id', '=', $reunion->id)->get()); 
 
-        return response()->json($fichiers);
-        
     })->middleware('auth');
-    
+
+
     Route::get('meeting/{id}/participants', function ($id){
-        $users =  Email::where('meeting_id', $id)->get();
+        $meeting = new Meeting();
+        $reunion = Meeting::findOrFail($id);
+        if(!$meeting->checkUser($id, Auth::user()->id)){
+            App::abort(403);
+        } 
+        return response()->json(Email::where('meeting_id', '=', $reunion->id)->get()); 
 
-        return response()->json($users);
-        
     })->middleware('auth');
+
     
     Route::get('meeting/{id}', function ($id){
-        $reunion = Meeting::whereHas('emails', function($query) {
-            $query -> where('email_participant', Auth::user()->email);
-        })
-            ->Where('id', $id)
-            ->orWhere('user_id', Auth::user()->id)
-            ->Where('id', $id)
-            ->first();
-        
+        $meeting = new Meeting();
+        $reunion = Meeting::findOrFail($id);
+        if(!$meeting->checkUser($id, Auth::user()->id)){
+            App::abort(403);
+        } 
+        $reunion->{'fichiers'} = Fileentry::where('meeting_id', '=', $reunion->id)->get();
         $reunion->{"participants"} = Email::where('meeting_id', '=', $reunion->id)->get();
-        $reunion->{"fichiers"} = Fileentry::where('meeting_id', '=', $reunion->id)->get();
-        
-        if($reunion)
-            return response()->json($reunion);    
-        else
-            return response()->json("[{'Access':'Denied'}]");    
+        return response()->json($reunion);    
         
     })->middleware('auth');
+
+
     
     Route::get('meeting', function (){
         $reunions =  Meeting::whereHas('emails', function($query) {
@@ -95,11 +99,11 @@ Route::group(['prefix' => 'json'], function () {
         return response()->json($reunions);
         
     })->middleware('auth');
+
+
     
     Route::get('profile', function (){
         $profile = User::where('id', Auth::user()->id)->first();
-        
-        return response()->json($profile);        
-        
+        return response()->json($profile);
     })->middleware('auth');
 });
