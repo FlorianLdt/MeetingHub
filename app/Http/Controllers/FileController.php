@@ -76,6 +76,7 @@ class FileController extends Controller
         return response()->download($path, $file->original_name, $header);
 
     }
+
     /**
      * Show the form for editing the specified resource.
      *
