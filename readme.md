@@ -4,17 +4,19 @@
 
 MeetingHub est un site internet utilisé pour créer des réunions et y inviter des participants.
 
-Le projet a été implementé à l'aide du Framework PHP Laravel (https://laravel.com/) et utilise en 
+Le projet a été développé à l'aide du Framework PHP Laravel (https://laravel.com/) et implemente une API RESTFUL. 
 
 ## Déploiement du projet
 
 ### Téléchargement du projet 
 
-Le projet est télachargeable à l'adresse suivante : https://github.com/FlorianLdt/MeetingHub.
+Le projet est téléchargeable à l'adresse suivante : https://github.com/FlorianLdt/MeetingHub.
 
-### Installation du Framework Laravel
+### Serveur du projet MeetingHub
 
-## Présentation de l'API REST du projet
+MeetingHub est consultable à l'adresse suivante : http://arsene.me/.
+
+## Présentation de l'API RESTFUL du projet
 
 ### Les ressources
 
@@ -27,45 +29,48 @@ Les différentes ressources que notre API met en place sont :
 
 ### Adresses et verbes HTTP
 
+L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilisateur est authentifié.
+
 **Ressource meeting**
 
-* `GET http://localhost:8000/meeting` --> Retourne la liste complète des réunions
-* `GET http://localhost:8000/meeting/create` --> Retourne
-* `GET http://localhost:8000/meeting/{id}/participant` --> Retourne
-* `GET http://localhost:8000/meeting/{meeting}` --> Retourne
-* `GET http://localhost:8000/meeting/{meeting}/edit` --> Retourne
-* `POST http://localhost:8000/meeting` --> Retourne
-* `PUT http://localhost:8000/meeting/{meeting}` --> Retourne
-* `DELETE http://localhost:8000/meeting/{meeting}` --> Retourne
+* `GET /meeting` --> Retourne la liste complète des réunions où l'utilisateur authentifié est propriétaire ou participant.
+* `GET /meeting/create` --> Retourne la page de création d'une réunion.
+* `GET /meeting/{meeting_id}/participant` --> Retourne la liste des participants à la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /meeting/{meeting_id}` --> Retourne la page de la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /meeting/{meeting_id}/edit` --> Retourne la page de modification de la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant)
+* `GET /json/meeting` --> Retourne au format JSON la liste complète des réunions où l'utilisateur authentifié est propriétaire ou participant. 
+* `GET /json/meeting/{meeting_id}` --> Retourne au format JSON la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `POST /meeting` --> Retourne
+* `PUT /meeting/{meeting}` --> Retourne
+* `DELETE /meeting/{meeting_id}` --> Supprime la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 
 **Ressource profile**
 
-* `GET http://localhost:8000/profile` --> Retourne
-* `GET http://localhost:8000/profile/create` --> Retourne
-* `GET http://localhost:8000/profile/{profile}` --> Retourne
-* `GET http://localhost:8000/profile/{profile}/edit` --> Retourne
-* `POST http://localhost:8000/profile` --> Retourne
-* `PUT http://localhost:8000/profile/{profile}` --> Retourne
-* `DELETE http://localhost:8000/profile/{profile}` --> Retourne
+* `GET /profile` --> Retourne la page profil
+* `GET /profile/create` --> Retourne
+* `GET /profile/{profile}` --> Retourne
+* `GET /profile/{profile}/edit` --> Retourne
+* `GET /json/profile` --> Retourne au format JSON le profil de l'utilisateur
+* `POST /profile` --> Retourne
+* `PUT /profile/{profile}` --> Retourne
+* `DELETE /profile/{profile}` --> Retourne
 
 **Ressource participant**
 
-* `GET http://localhost:8000/participant` --> Retourne
-* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `GET http://localhost:8000/participant/{participant}/edit` --> Retourne
-* `POST http://localhost:8000/participant` --> Retourne
-* `PUT http://localhost:8000/participant/{participant}` --> Retourne
-* `DELETE http://localhost:8000/participant/{meeting_id}/delete/{email_participant}` --> Retourne
+* `GET /participant` --> Retourne
+* `GET /participant/{participant}/edit` --> Retourne
+* `GET /json/meeting/{meeting_id}/participants` --> Retourne au format JSON la liste des participants à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `POST /participant` --> Retourne
+* `PUT /participant/{participant}` --> Retourne
+* `DELETE /participant/{meeting_id}/delete/{email_participant}` --> Supprime un participant à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant et `{email_participant}` un email valide d'un participant à cette réunion).
 
 **Ressource fichier**
 
-* `GET http://localhost:8000/fichier` --> Retourne la liste complète des fichiers
-* `GET http://localhost:8000/fichier/create` --> Retourne
-* `GET http://localhost:8000/fichier/{fichier}` --> Retourne
-* `GET http://localhost:8000/fichier/{fichier}/edit` --> Retourne
-* `POST http://localhost:8000/fichier` --> Retourne
-* `PUT http://localhost:8000/fichier/{fichier}` --> Retourne
-* `DELETE http://localhost:8000/fichier/{fichier}` --> Retourne
-
+* `GET /fichier` --> Retourne la liste complète des fichiers
+* `GET /fichier/create` --> Retourne
+* `GET /fichier/{fichier}` --> Retourne
+* `GET /fichier/{fichier}/edit` --> Retourne
+* `GET /json/meeting/{meeting_id}/fichiers` --> Retourne au format JSON la liste des fichiers à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `POST /fichier` --> Retourne
+* `PUT /fichier/{fichier}` --> Retourne
+* `DELETE /fichier/{fichier}` --> Retourne

@@ -84,11 +84,11 @@ class MeetingController extends Controller
     }
 
 
-    public function lister() {        
-        $meetings=Meeting::all();
+    // public function lister() {        
+    //     $meetings=Meeting::all();
         
-        return response()->json($meeting);
-    }
+    //     return response()->json($meeting);
+    // }
     
     /**
      * Display the specified resource.
@@ -98,14 +98,15 @@ class MeetingController extends Controller
      */
     public function show($id)
     {
-        
         $meeting=Meeting::findOrFail($id);
-
+        $check = new Meeting();
+        if(!$check->checkUser($id, Auth::user()->id)){
+            abort(403);
+        }
         $participant = DB::table('emails')
             ->leftJoin('users', 'emails.email_participant', '=', 'users.email')
             ->where('emails.meeting_id', '=', $id)
             ->get();
-
         $document=Fileentry::where('meeting_id', $id)->get();
         return view('meeting/show', ['meeting'=>$meeting, 'participants'=>$participant, 'documents'=>$document]);
     }
