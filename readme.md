@@ -35,14 +35,14 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 
 * `GET /meeting` --> Retourne la liste complète des réunions où l'utilisateur authentifié est propriétaire ou participant.
 * `GET /meeting/create` --> Retourne la page de création d'une réunion.
-* `GET /meeting/{meeting_id}/participant` --> Retourne la liste des participants à la réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `GET /meeting/{meeting_id}` --> Retourne la page de la réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `GET /meeting/{meeting_id}/edit` --> Retourne la page de modification de la réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant)
+* `GET /meeting/{meeting_id}/participant` --> Retourne la liste des participants à la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /meeting/{meeting_id}` --> Retourne la page de la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /meeting/{meeting_id}/edit` --> Retourne la page de modification de la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant)
 * `GET /json/meeting` --> Retourne au format JSON la liste complète des réunions où l'utilisateur authentifié est propriétaire ou participant. 
-* `GET /json/meeting/{meeting_id}` --> Retourne au format JSON la réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /json/meeting/{meeting_id}` --> Retourne au format JSON la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 * `POST /meeting` --> Retourne
 * `PUT /meeting/{meeting}` --> Retourne
-* `DELETE /meeting/{meeting_id}` --> Supprime la réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `DELETE /meeting/{meeting_id}` --> Supprime la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 
 **Ressource profile**
 
@@ -59,10 +59,10 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 
 * `GET /participant` --> Retourne
 * `GET /participant/{participant}/edit` --> Retourne
-* `GET /json/meeting/{meeting_id}/participants` --> Retourne au format JSON la liste des participants à une réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /json/meeting/{meeting_id}/participants` --> Retourne au format JSON la liste des participants à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 * `POST /participant` --> Retourne
 * `PUT /participant/{participant}` --> Retourne
-* `DELETE /participant/{meeting_id}/delete/{email_participant}` --> Supprime un participant à une réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant et {email_participant} un email valide d'un participant à cette réunion).
+* `DELETE /participant/{meeting_id}/delete/{email_participant}` --> Supprime un participant à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant et `{email_participant}` un email valide d'un participant à cette réunion).
 
 **Ressource fichier**
 
@@ -70,7 +70,7 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 * `GET /fichier/create` --> Retourne
 * `GET /fichier/{fichier}` --> Retourne
 * `GET /fichier/{fichier}/edit` --> Retourne
-* `GET /json/meeting/{meeting_id}/fichiers` --> Retourne au format JSON la liste des fichiers à une réunion ({meeting_id} doit être une réunion dont l'utilisateur est propriétaire ou participant).
+* `GET /json/meeting/{meeting_id}/fichiers` --> Retourne au format JSON la liste des fichiers à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 * `POST /fichier` --> Retourne
 * `PUT /fichier/{fichier}` --> Retourne
 * `DELETE /fichier/{fichier}` --> Retourne
