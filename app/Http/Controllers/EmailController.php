@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Email;
 use Session;
 use Redirect;
+use App\Mail\InvitationEmail;
+use Mail;
 
 class EmailController extends Controller
 {
@@ -29,9 +31,13 @@ class EmailController extends Controller
            $msg = 'participant ajouté';
         }else{
             $msg = 'participant non ajouté, il existe peut-être déja'; 
+            Session::flash('message', $msg);
+            return Redirect::to('meeting/'.$input['meeting_id']);
         }
 
         Session::flash('message', $msg);
+        
+        Mail::to($input['email_participant'])->send(new InvitationEmail($input['meeting_id'], $input['email_participant']));
 
         return Redirect::to('meeting/'.$input['meeting_id']);
     }

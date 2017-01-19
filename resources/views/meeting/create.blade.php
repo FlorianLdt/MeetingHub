@@ -3,7 +3,7 @@
 @section('content')
 <div class="container page">
     <div class="title m-b-md text-center">
-        Edit your meeting
+        Create your meeting
     </div>
     <div class="row meetingsection">
 
