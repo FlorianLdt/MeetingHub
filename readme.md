@@ -14,7 +14,7 @@ Le projet est téléchargeable à l'adresse suivante : https://github.com/Floria
 
 ### Serveur du projet MeetingHub
 
-MeetingHub est consultable à l'adresse suivante : http://arsene.me/
+MeetingHub est consultable à l'adresse suivante : http://arsene.me/.
 
 ## Présentation de l'API RESTFUL du projet
 
