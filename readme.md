@@ -45,27 +45,28 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 
 **Ressource profile**
 
-* `GET /profile/create` --> Retourne 
-* `GET /profile/{profile}` --> Retourne le profil de l'utilisateur avec pour identifiant {profile}
-* `GET /profile/{profile}/edit` --> Retourne les informations du profil pour pouvoir les éditer dans un formulaire
+* `GET /profile/{profile_id}` --> Retourne le profil de l'utilisateur avec pour identifiant `{profile_id}`
 * `GET /json/profile` --> Retourne au format JSON le profil de l'utilisateur
-* `PUT /profile/{profile}` --> Permet d'envoyer au serveur le profil nouvellement créé avec l'identifiant {profile}
-* `DELETE /profile/{profile}` --> Supprime le profil {profile} 
 
 **Ressource participant**
 
-* `GET /participant` --> Retourne
-* `GET /participant/{participant}/edit` --> Retourne
 * `GET /json/meeting/{meeting_id}/participants` --> Retourne au format JSON la liste des participants à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `PUT /participant/{participant}` --> Rajoute le participant avec pour id {participant}
 * `DELETE /participant/{meeting_id}/delete/{email_participant}` --> Supprime un participant à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant et `{email_participant}` un email valide d'un participant à cette réunion).
 
 **Ressource fichier**
 
-* `GET /fichier` --> Retourne la liste complète des fichiers
-* `GET /fichier/create` --> Retourne
-* `GET /fichier/{fichier}` --> Retourne le fichier avec pour identifiant {fichier}
-* `GET /fichier/{fichier}/edit` --> Retourne les informations du fichier {fichier} pour édition
 * `GET /json/meeting/{meeting_id}/fichiers` --> Retourne au format JSON la liste des fichiers à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `PUT /fichier/{fichier}` --> Envoie au serveur le fichier {fichier}
-* `DELETE /fichier/{fichier}` --> Supprime le fichier avec pour identifiant {fichier}
+* `DELETE /fichier/{fichier_id}` --> Supprime le fichier avec pour identifiant `{fichier_id}`
+
+### Codes HTTP d'erreurs du client web ou d'erreurs du serveur / du serveur d'application
+
+Les codes HTTP d'erreurs implémentés dans le projet MeetingHub sont les suivants :
+
+**Erreur du client web**
+* 403 - Forbidden : Le serveur a compris la requête, mais refuse de l'exécuter. Cela signifie que les droits d'accès ne permettent pas au client d'accéder à la ressource.
+* 404 - Not Found : Ressource non trouvée.
+
+**Erreur du client web**
+* 500 - Internal Server Error :	Erreur interne du serveur.
+* 503 - Service Unavailable : Service temporairement indisponible ou en maintenance.
+
