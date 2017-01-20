@@ -40,7 +40,6 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 * `GET /meeting/{meeting_id}/edit` --> Retourne la page de modification de la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant)
 * `GET /json/meeting` --> Retourne au format JSON la liste complète des réunions où l'utilisateur authentifié est propriétaire ou participant. 
 * `GET /json/meeting/{meeting_id}` --> Retourne au format JSON la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `POST /meeting` --> Retourne
 * `PUT /meeting/{meeting_id}` --> Permet d'envoyer au serveur un meeting nouvellement créé avec l'identifiant {meeting_id}
 * `DELETE /meeting/{meeting_id}` --> Supprime la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 
@@ -51,7 +50,6 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 * `GET /profile/{profile}` --> Retourne le profil de l'utilisateur avec pour identifiant {profile}
 * `GET /profile/{profile}/edit` --> Retourne les informations du profil pour pouvoir les éditer dans un formulaire
 * `GET /json/profile` --> Retourne au format JSON le profil de l'utilisateur
-* `POST /profile` --> Retourne
 * `PUT /profile/{profile}` --> Permet d'envoyer au serveur le profil nouvellement créé avec l'identifiant {profile}
 * `DELETE /profile/{profile}` --> Supprime le profil {profile} 
 
@@ -60,8 +58,7 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 * `GET /participant` --> Retourne
 * `GET /participant/{participant}/edit` --> Retourne
 * `GET /json/meeting/{meeting_id}/participants` --> Retourne au format JSON la liste des participants à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `POST /participant` --> Retourne
-* `PUT /participant/{participant}` --> Retourne
+* `PUT /participant/{participant}` --> Rajoute le participant avec pour id {participant}
 * `DELETE /participant/{meeting_id}/delete/{email_participant}` --> Supprime un participant à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant et `{email_participant}` un email valide d'un participant à cette réunion).
 
 **Ressource fichier**
@@ -71,6 +68,5 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 * `GET /fichier/{fichier}` --> Retourne le fichier avec pour identifiant {fichier}
 * `GET /fichier/{fichier}/edit` --> Retourne les informations du fichier {fichier} pour édition
 * `GET /json/meeting/{meeting_id}/fichiers` --> Retourne au format JSON la liste des fichiers à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
-* `POST /fichier` --> Retourne
 * `PUT /fichier/{fichier}` --> Envoie au serveur le fichier {fichier}
 * `DELETE /fichier/{fichier}` --> Supprime le fichier avec pour identifiant {fichier}
