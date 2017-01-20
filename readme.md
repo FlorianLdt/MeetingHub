@@ -63,10 +63,10 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 Les codes HTTP d'erreurs implémentés dans le projet MeetingHub sont les suivants :
 
 **Erreur du client web**
-* 403 - Forbidden : Le serveur a compris la requête, mais refuse de l'exécuter. Cela signifie que les droits d'accès ne permettent pas au client d'accéder à la ressource.
-* 404 - Not Found : Ressource non trouvée.
+* `403 - Forbidden` : Le serveur a compris la requête, mais refuse de l'exécuter. Cela signifie que les droits d'accès ne permettent pas au client d'accéder à la ressource.
+* `404 - Not Found` : Ressource non trouvée.
 
 **Erreur du client web**
-* 500 - Internal Server Error :	Erreur interne du serveur.
-* 503 - Service Unavailable : Service temporairement indisponible ou en maintenance.
+* `500 - Internal Server Error` :	Erreur interne du serveur.
+* `503 - Service Unavailable` : Service temporairement indisponible ou en maintenance.
 
