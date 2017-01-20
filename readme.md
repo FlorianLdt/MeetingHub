@@ -45,7 +45,6 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 
 **Ressource profile**
 
-* `GET /profile` --> Retourne
 * `GET /profile/create` --> Retourne 
 * `GET /profile/{profile}` --> Retourne le profil de l'utilisateur avec pour identifiant {profile}
 * `GET /profile/{profile}/edit` --> Retourne les informations du profil pour pouvoir les éditer dans un formulaire
