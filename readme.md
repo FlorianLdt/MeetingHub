@@ -41,19 +41,19 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 * `GET /json/meeting` --> Retourne au format JSON la liste complète des réunions où l'utilisateur authentifié est propriétaire ou participant. 
 * `GET /json/meeting/{meeting_id}` --> Retourne au format JSON la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 * `POST /meeting` --> Retourne
-* `PUT /meeting/{meeting}` --> Retourne
+* `PUT /meeting/{meeting_id}` --> Permet d'envoyer au serveur un meeting nouvellement créé avec l'identifiant {meeting_id}
 * `DELETE /meeting/{meeting_id}` --> Supprime la réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 
 **Ressource profile**
 
-* `GET /profile` --> Retourne la page profil
-* `GET /profile/create` --> Retourne
-* `GET /profile/{profile}` --> Retourne
-* `GET /profile/{profile}/edit` --> Retourne
+* `GET /profile` --> Retourne
+* `GET /profile/create` --> Retourne 
+* `GET /profile/{profile}` --> Retourne le profil de l'utilisateur avec pour identifiant {profile}
+* `GET /profile/{profile}/edit` --> Retourne les informations du profil pour pouvoir les éditer dans un formulaire
 * `GET /json/profile` --> Retourne au format JSON le profil de l'utilisateur
 * `POST /profile` --> Retourne
-* `PUT /profile/{profile}` --> Retourne
-* `DELETE /profile/{profile}` --> Retourne
+* `PUT /profile/{profile}` --> Permet d'envoyer au serveur le profil nouvellement créé avec l'identifiant {profile}
+* `DELETE /profile/{profile}` --> Supprime le profil {profile} 
 
 **Ressource participant**
 
@@ -68,9 +68,9 @@ L'ensemble des adresses ci-dessous sont consultatables uniquement quand l'utilis
 
 * `GET /fichier` --> Retourne la liste complète des fichiers
 * `GET /fichier/create` --> Retourne
-* `GET /fichier/{fichier}` --> Retourne
-* `GET /fichier/{fichier}/edit` --> Retourne
+* `GET /fichier/{fichier}` --> Retourne le fichier avec pour identifiant {fichier}
+* `GET /fichier/{fichier}/edit` --> Retourne les informations du fichier {fichier} pour édition
 * `GET /json/meeting/{meeting_id}/fichiers` --> Retourne au format JSON la liste des fichiers à une réunion (`{meeting_id}` doit être une réunion dont l'utilisateur est propriétaire ou participant).
 * `POST /fichier` --> Retourne
-* `PUT /fichier/{fichier}` --> Retourne
-* `DELETE /fichier/{fichier}` --> Retourne
+* `PUT /fichier/{fichier}` --> Envoie au serveur le fichier {fichier}
+* `DELETE /fichier/{fichier}` --> Supprime le fichier avec pour identifiant {fichier}
